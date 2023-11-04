@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: Home(),
+      home: null,
     );
   }
 }
