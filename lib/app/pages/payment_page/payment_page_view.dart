@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomePageView extends StatelessWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class PaymentPageView extends StatelessWidget {
+  const PaymentPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
