@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/home.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_view.dart';
 
 void main() {
   runApp(const MyApp());
