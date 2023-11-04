@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_view.dart';
+import 'package:get/get.dart';
+
+import 'common/routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Thrivee',
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: HomePageView(),
-
+      initialRoute: AppPages.initial,
+      getPages: AppPages.routes,
     );
   }
 }
