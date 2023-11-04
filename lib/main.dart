@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_view.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: HomePageView(),
+
     );
   }
 }
