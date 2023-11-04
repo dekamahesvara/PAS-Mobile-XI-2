@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.green,
+        color: Colors.cyan,
         child: SvgPicture.asset('assets/svg/Logo.svg'),
       ),
     );
