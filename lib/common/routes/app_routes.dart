@@ -1,6 +1,6 @@
 abstract class Routes {
   Routes._();
-  static const splashscreenpage = '/';
+  static const splashscreenpage = '/splash';
   static const signinpage = '/signin';
   static const signuppage = '/signup';
   static const homepage = '/home';
