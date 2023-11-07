@@ -8,16 +8,23 @@ TextStyle heading = const TextStyle(
   fontSize: 28,
 );
 
-TextStyle textStyle1 = const TextStyle(
+TextStyle textGray500 = const TextStyle(
   fontFamily: 'Inter',
   color: textGray,
   fontWeight: FontWeight.w500,
-  fontSize: 18,
+  fontSize: 17,
 );
 
-TextStyle textStyle2 = const TextStyle(
+TextStyle textBlack500 = const TextStyle(
   fontFamily: 'Inter',
   color: textBlack,
   fontWeight: FontWeight.w500,
-  fontSize: 18,
+  fontSize: 17,
+);
+
+TextStyle textWhite500 = const TextStyle(
+  fontFamily: 'Inter',
+  color: textWhite,
+  fontWeight: FontWeight.w500,
+  fontSize: 17,
 );

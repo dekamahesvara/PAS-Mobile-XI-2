@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GetStartedView extends StatelessWidget {
   const GetStartedView({super.key});
@@ -24,88 +25,122 @@ class GetStartedView extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Container(
-            height: height * 0.6,
-            width: width * 0.9,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: background,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Let's Get Started",
-                  style: heading,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/svg/app_logo.svg',
+                width: width * 0.05,
+                height: height * 0.05,
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15),
+                height: height * 0.6,
+                width: width * 0.9,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: background,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SignInButton(height, "Facebook"),
-                    SignInButton(height, "Twitter"),
-                    SignInButton(height, "Google"),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: height * 0.01),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Already have an account?",
-                            style: textStyle1,
-                          ),
-                          TextButton(
-                            onPressed: null,
-                            child: Text(
-                              "Sign In",
-                              style: textStyle2,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Text(
+                      "Let's Get Started",
+                      style: heading,
                     ),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        signInButton(width, height, "Facebook",
+                            'assets/svg/facebook_logo.svg', facebook),
+                        signInButton(width, height, "Twitter",
+                            'assets/svg/twitter_logo.svg', twitter),
+                        signInButton(width, height, "Google",
+                            'assets/svg/google_logo.svg', google),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Already have an account?",
+                              style: textGray500,
+                            ),
+                            TextButton(
+                              onPressed: null,
+                              child: Text(
+                                "Sign In",
+                                style: textBlack500,
+                              ),
+                            ),
+                          ],
                         ),
-                        onPressed: null,
-                        child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 25),
-                            width: double.infinity,
-                            child: const Text("Create an Account",
-                                textAlign: TextAlign.center)))
+                        ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                            child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                width: double.infinity,
+                                child: Text("Create an Account",
+                                    style: textWhite500,
+                                    textAlign: TextAlign.center)))
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Container SignInButton(double height, String text) {
+  Container signInButton(
+      double width, double height, String text, String svg, Color background) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: height * 0.01),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
-          onPressed: null,
-          child: Container(
-              padding: EdgeInsets.symmetric(vertical: height * 0.025),
-              width: double.infinity,
-              child: Text(text, textAlign: TextAlign.center))),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: height * 0.02),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(right: 5),
+                child: SvgPicture.asset(
+                  svg,
+                  width: width * 0.015,
+                  height: height * 0.015,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+              ),
+              Text(
+                text,
+                style: textWhite500,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
