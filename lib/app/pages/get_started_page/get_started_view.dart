@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class GetStartedView extends StatelessWidget {
   const GetStartedView({super.key});
@@ -70,16 +71,20 @@ class GetStartedView extends StatelessWidget {
                               style: textGray500,
                             ),
                             TextButton(
-                              onPressed: null,
+                              onPressed: () {
+                                Get.toNamed('/signin');
+                              },
                               child: Text(
                                 "Sign In",
                                 style: textBlack500,
                               ),
-                            ),
+                            )
                           ],
                         ),
                         ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed('/signup');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primary,
                               shape: RoundedRectangleBorder(
