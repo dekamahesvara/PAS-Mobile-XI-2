@@ -28,7 +28,7 @@ class SplashScreenPageView extends StatelessWidget {
       child: AnimatedSplashScreen(
         backgroundColor: Colors.transparent,
         splash: SvgPicture.asset(
-          'assets/svg/Logo.svg',
+          'assets/svg/app_logo.svg',
           width: width * 0.1,
           height: height * 0.1,
         ),
