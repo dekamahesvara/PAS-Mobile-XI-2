@@ -36,81 +36,30 @@ class SignUpPageView extends GetView<SignUpPageController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/svg/app_logo.svg',
-                  width: width * 0.05,
-                  height: height * 0.05,
+                iconApp(width, height),
+                const SizedBox(
+                  height: 15,
                 ),
                 Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   padding: const EdgeInsets.all(20),
+                  width: width * 0.9,
                   decoration: BoxDecoration(
-                    color: background,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 50, top: 10),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Join Us Today!",
-                              style: heading,
-                            ),
-                            Text(
-                              "Sign Up to become a member.",
-                              style: textGray500,
-                            ),
-                          ],
-                        ),
-                      ),
+                      titleHeading(),
                       Column(
                         children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            child: const TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Username',
-                                filled: true,
-                                fillColor: Colors.transparent,
-                                alignLabelWithHint: true,
-                                labelStyle: TextStyle(color: Colors.grey),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            child: const TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                filled: true,
-                                fillColor: Colors.transparent,
-                                alignLabelWithHint: true,
-                                labelStyle: TextStyle(color: Colors.grey),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ),
+                          textField("Username", controller.usernameController),
+                          textField("Email", controller.emailController),
                           Obx(() {
                             return Container(
                               margin: const EdgeInsets.only(
                                   top: 10, left: 10, right: 10, bottom: 50),
                               child: TextField(
+                                controller: controller.passwordController,
                                 obscureText: controller.isObsecure.value,
                                 decoration: InputDecoration(
                                   suffixIcon: IconButton(
@@ -128,49 +77,125 @@ class SignUpPageView extends GetView<SignUpPageController> {
                                   filled: true,
                                   fillColor: Colors.transparent,
                                   alignLabelWithHint: true,
-                                  labelStyle:
-                                      const TextStyle(color: Colors.grey),
+                                  labelStyle: const TextStyle(color: gray),
+                                  floatingLabelStyle:
+                                      const TextStyle(color: black),
                                   enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
+                                    borderSide: BorderSide(color: gray),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black),
+                                    borderSide: BorderSide(color: black),
                                   ),
                                 ),
                               ),
                             );
                           }),
+                          textButton(),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Get.offAllNamed('/home');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: background,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          width: double.infinity,
-                          child: Text("Sign Up",
-                              style: textPurple500,
-                              textAlign: TextAlign.center))),
-                )
+                const SizedBox(
+                  height: 15,
+                ),
+                btnSignUp(width),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Row textButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Already have an account?",
+          style: textGray500,
+        ),
+        TextButton(
+          onPressed: () {
+            Get.offNamed('/signin');
+          },
+          child: Text(
+            "Sign In",
+            style: textBlack500,
+          ),
+        )
+      ],
+    );
+  }
+
+  Container textField(String text, TextEditingController controller) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: text,
+          filled: true,
+          fillColor: Colors.transparent,
+          alignLabelWithHint: true,
+          labelStyle: const TextStyle(color: gray),
+          floatingLabelStyle: const TextStyle(color: black),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: gray),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: black),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container titleHeading() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 50, top: 10),
+      child: Column(
+        children: [
+          Text(
+            "Join Us Today!",
+            style: heading,
+          ),
+          Text(
+            "Sign Up to become a member.",
+            style: textGray500,
+          ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox btnSignUp(double width) {
+    return SizedBox(
+      width: width * 0.9,
+      child: ElevatedButton(
+          onPressed: () {
+            Get.offAllNamed('/home');
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              width: double.infinity,
+              child: Text("Sign Up",
+                  style: textPurple500, textAlign: TextAlign.center))),
+    );
+  }
+
+  SvgPicture iconApp(double width, double height) {
+    return SvgPicture.asset(
+      'assets/svg/app_logo.svg',
+      width: width * 0.05,
+      height: height * 0.05,
     );
   }
 }

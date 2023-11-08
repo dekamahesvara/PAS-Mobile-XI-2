@@ -35,11 +35,11 @@ class GetStartedView extends StatelessWidget {
                 height: height * 0.05,
               ),
               Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                margin: const EdgeInsets.symmetric(vertical: 15),
                 padding: const EdgeInsets.all(20),
+                width: width * 0.9,
                 decoration: BoxDecoration(
-                  color: background,
+                  color: white,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
