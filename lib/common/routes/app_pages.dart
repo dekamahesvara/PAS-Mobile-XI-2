@@ -26,6 +26,7 @@ import 'package:pas_mobile_xi_2/app/pages/splash_screen_page/splash_page_view.da
 
 import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 
+
 class AppPages {
   AppPages._();
 
