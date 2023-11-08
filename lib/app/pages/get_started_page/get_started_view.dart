@@ -35,9 +35,8 @@ class GetStartedView extends StatelessWidget {
                 height: height * 0.05,
               ),
               Container(
-                margin: const EdgeInsets.only(top: 15),
-                height: height * 0.6,
-                width: width * 0.9,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: background,
@@ -46,20 +45,26 @@ class GetStartedView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      "Let's Get Started",
-                      style: heading,
+                    Container(
+                      margin: const EdgeInsets.only(top: 50, bottom: 50),
+                      child: Text(
+                        "Let's Get Started",
+                        style: heading,
+                      ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        signInButton(width, height, "Facebook",
-                            'assets/svg/facebook_logo.svg', facebook),
-                        signInButton(width, height, "Twitter",
-                            'assets/svg/twitter_logo.svg', twitter),
-                        signInButton(width, height, "Google",
-                            'assets/svg/google_logo.svg', google),
-                      ],
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 50),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          signInButton(width, height, "Facebook",
+                              'assets/svg/facebook_logo.svg', facebook),
+                          signInButton(width, height, "Twitter",
+                              'assets/svg/twitter_logo.svg', twitter),
+                          signInButton(width, height, "Google",
+                              'assets/svg/google_logo.svg', google),
+                        ],
+                      ),
                     ),
                     Column(
                       children: [

@@ -28,3 +28,10 @@ TextStyle textWhite500 = const TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 17,
 );
+
+TextStyle textPurple500 = const TextStyle(
+  fontFamily: 'Inter',
+  color: textPurple,
+  fontWeight: FontWeight.w500,
+  fontSize: 17,
+);
