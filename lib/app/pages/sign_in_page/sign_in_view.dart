@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_in_page/sign_in_controller.dart';
 import 'package:get/get.dart';
-import 'package:pas_mobile_xi_2/app/pages/sign_in_page/widget/btnSignUp.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_in_page/widget/iconApp.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_in_page/widget/textButton.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_in_page/widget/textField.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_in_page/widget/textHeading.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 
 class SignInPageView extends GetView<SignInPageController> {
   const SignInPageView({super.key});
@@ -103,7 +103,25 @@ class SignInPageView extends GetView<SignInPageController> {
                 const SizedBox(
                   height: 15,
                 ),
-                btnSignIn(width: width),
+                SizedBox(
+                  width: width * 0.9,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Get.offAllNamed('/home');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          width: double.infinity,
+                          child: Text("Sign In",
+                              style: textPurple500,
+                              textAlign: TextAlign.center))),
+                ),
               ],
             ),
           ),
