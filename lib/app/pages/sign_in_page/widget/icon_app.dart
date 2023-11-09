@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class iconApp extends StatelessWidget {
-  const iconApp({
+class IconApp extends StatelessWidget {
+  const IconApp({
     super.key,
     required this.width,
     required this.height,

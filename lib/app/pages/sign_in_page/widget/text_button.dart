@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
-class textButton extends StatelessWidget {
-  const textButton({
+class TextButtonSignUp extends StatelessWidget {
+  const TextButtonSignUp({
     super.key,
   });
 

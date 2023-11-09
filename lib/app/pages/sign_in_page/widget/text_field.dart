@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 
-class textField extends StatelessWidget {
-  const textField({
+class TextFieldSignin extends StatelessWidget {
+  const TextFieldSignin({
     super.key,
     required this.text,
     required this.controller,
@@ -14,7 +14,7 @@ class textField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(

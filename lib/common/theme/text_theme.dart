@@ -35,3 +35,10 @@ TextStyle textPurple500 = const TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 17,
 );
+
+TextStyle textRed500 = const TextStyle(
+  fontFamily: 'Inter',
+  color: textRed,
+  fontWeight: FontWeight.w500,
+  fontSize: 17,
+);
