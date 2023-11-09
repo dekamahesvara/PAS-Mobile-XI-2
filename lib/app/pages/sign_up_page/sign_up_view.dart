@@ -21,42 +21,62 @@ class SignUpPageView extends GetView<SignUpPageController> {
       controller.isObsecure.value = !controller.isObsecure.value;
     }
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        body: gradientBackground(width, height, toggleTextVisibility),
-      ),
-    );
-  }
-
-  Container gradientBackground(
-      double width, double height, void Function() toggleTextVisibility) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            primary,
-            secondary,
-          ],
-        ),
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            iconApp(width: width, height: height),
-            const SizedBox(
-              height: 20,
+    return Scaffold(
+      body: Stack(
+        children: [
+          GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    primary,
+                    secondary,
+                  ],
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    iconApp(width: width, height: height),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    whiteContainer(toggleTextVisibility),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    signUpButton(),
+                  ],
+                ),
+              ),
             ),
-            whiteContainer(toggleTextVisibility),
-            const SizedBox(
-              height: 15,
+          ),
+          Positioned(
+            top: 20,
+            left: 20,
+            child: GestureDetector(
+              onTap: () => Get.back(),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: white,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: black,
+                  ),
+                ),
+              ),
             ),
-            signUpButton(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -64,7 +84,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
   Container whiteContainer(void Function() toggleTextVisibility) {
     return Container(
       padding: const EdgeInsets.all(20),
-      constraints: const BoxConstraints(maxWidth: 500),
+      constraints: const BoxConstraints(maxWidth: 450),
       decoration: BoxDecoration(
         color: white,
         borderRadius: BorderRadius.circular(20),
@@ -87,7 +107,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                   text: "Email", controller: controller.emailController),
               const SizedBox(height: 20),
               textFieldObx(toggleTextVisibility),
-              const SizedBox(height: 100),
+              const SizedBox(height: 80),
               const textButton(),
             ],
           ),
@@ -135,7 +155,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
 
   Container signUpButton() {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 500),
+      constraints: const BoxConstraints(maxWidth: 450),
       child: ElevatedButton(
           onPressed: () {
             Get.offAllNamed('/home');
