@@ -29,7 +29,7 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.getstartedpage;
+  static const initial = Routes.cartpage;
 
   static final routes = [
     GetPage(
@@ -59,7 +59,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.cartpage,
-      page: () => const CartPageView(),
+      page: () => CartPageView(),
       binding: CartPageBinding(),
     ),
     GetPage(
