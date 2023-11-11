@@ -6,4 +6,8 @@ class SignInPageController extends GetxController {
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  toggleTextVisibility() {
+    isObsecure.value = !isObsecure.value;
+  }
 }

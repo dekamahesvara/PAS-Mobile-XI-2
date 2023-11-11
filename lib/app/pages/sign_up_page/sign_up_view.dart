@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_up_page/sign_up_controller.dart';
+import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/button_back.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/icon_app.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/text_field.dart';
+import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/text_field_obx.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/text_title.dart';
 import 'package:pas_mobile_xi_2/app/pages/sign_up_page/widget/text_button.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
@@ -16,10 +18,6 @@ class SignUpPageView extends GetView<SignUpPageController> {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
-
-    void toggleTextVisibility() {
-      controller.isObsecure.value = !controller.isObsecure.value;
-    }
 
     return Scaffold(
       body: Stack(
@@ -43,9 +41,9 @@ class SignUpPageView extends GetView<SignUpPageController> {
                   children: [
                     iconApp(width: width, height: height),
                     const SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
-                    whiteContainer(toggleTextVisibility),
+                    whiteContainer(),
                     const SizedBox(
                       height: 15,
                     ),
@@ -55,36 +53,16 @@ class SignUpPageView extends GetView<SignUpPageController> {
               ),
             ),
           ),
-          Positioned(
-            top: 20,
-            left: 20,
-            child: GestureDetector(
-              onTap: () => Get.back(),
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: white,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: black,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          const ButtonBack(),
         ],
       ),
     );
   }
 
-  Container whiteContainer(void Function() toggleTextVisibility) {
+  Container whiteContainer() {
     return Container(
       padding: const EdgeInsets.all(20),
-      constraints: const BoxConstraints(maxWidth: 450),
+      constraints: const BoxConstraints(maxWidth: 400),
       decoration: BoxDecoration(
         color: white,
         borderRadius: BorderRadius.circular(20),
@@ -96,7 +74,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
           ),
           const TextTitle(),
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
           Column(
             children: [
@@ -106,8 +84,8 @@ class SignUpPageView extends GetView<SignUpPageController> {
               TextFieldSignUp(
                   text: "Email", controller: controller.emailController),
               const SizedBox(height: 20),
-              textFieldObx(toggleTextVisibility),
-              const SizedBox(height: 80),
+              const TextFieldObx(),
+              const SizedBox(height: 50),
               const textButton(),
             ],
           ),
@@ -116,49 +94,12 @@ class SignUpPageView extends GetView<SignUpPageController> {
     );
   }
 
-  Obx textFieldObx(void Function() toggleTextVisibility) {
-    return Obx(() {
-      return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextField(
-          controller: controller.passwordController,
-          obscureText: controller.isObsecure.value,
-          decoration: InputDecoration(
-            suffixIcon: IconButton(
-              icon: Icon(
-                controller.isObsecure.value
-                    ? Icons.visibility
-                    : Icons.visibility_off,
-                color: textBlack,
-              ),
-              onPressed: () {
-                toggleTextVisibility();
-              },
-            ),
-            labelText: 'Password',
-            filled: true,
-            fillColor: Colors.transparent,
-            alignLabelWithHint: true,
-            labelStyle: const TextStyle(color: gray),
-            floatingLabelStyle: const TextStyle(color: black),
-            enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: gray),
-            ),
-            focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: black),
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
   Container signUpButton() {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 450),
+      constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
           onPressed: () {
-            Get.offAllNamed('/home');
+            Get.offAllNamed('/cart');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: white,

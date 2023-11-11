@@ -39,7 +39,7 @@ class GetStartedView extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                constraints: const BoxConstraints(maxWidth: 500),
+                constraints: const BoxConstraints(maxWidth: 400),
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(20),

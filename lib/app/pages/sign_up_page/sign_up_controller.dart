@@ -7,4 +7,8 @@ class SignUpPageController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  toggleTextVisibility() {
+    isObsecure.value = !isObsecure.value;
+  }
 }
