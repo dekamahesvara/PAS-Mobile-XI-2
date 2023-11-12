@@ -10,9 +10,6 @@ class CartPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double height = mediaQuery.height;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
@@ -25,22 +22,37 @@ class CartPageView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 415,
-            child: ListView.builder(
-              itemCount: cartItems.length,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return CartItemContainer(
-                  image: cartItems[index].productImage,
-                  name: cartItems[index].productName,
-                  price: cartItems[index].productPrice,
-                );
-              },
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: black.withOpacity(0.2),
+                    spreadRadius: 4,
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: ListView.builder(
+                itemCount: cartItems.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CartItemContainer(
+                    image: cartItems[index].productImage,
+                    name: cartItems[index].productName,
+                    price: cartItems[index].productPrice,
+                  );
+                },
+              ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: white,
               borderRadius: BorderRadius.circular(15),
@@ -55,29 +67,24 @@ class CartPageView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Delivery Address",
-                        style: textBlack600,
+                Row(
+                  children: [
+                    Text(
+                      "Delivery Address",
+                      style: textBlack600,
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: black,
                       ),
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: black,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 5),
                   child: Row(
                     children: [
                       const Icon(
@@ -85,7 +92,7 @@ class CartPageView extends StatelessWidget {
                         color: black,
                         size: 40,
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 15),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -96,29 +103,24 @@ class CartPageView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Payment Method",
-                        style: textBlack600,
+                Row(
+                  children: [
+                    Text(
+                      "Payment Method",
+                      style: textBlack600,
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: black,
                       ),
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: black,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 5),
                   child: Row(
                     children: [
                       const Icon(
@@ -126,71 +128,55 @@ class CartPageView extends StatelessWidget {
                         color: Colors.black,
                         size: 40,
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 15),
                       Text("Gopay", style: textBlack500),
                     ],
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          "Order Info",
-                          style: textBlack600,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Order Info",
+                      style: textBlack600,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Subtotal",
+                          style: textGray500,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Subtotal",
-                              style: textGray500,
-                            ),
-                            const Spacer(),
-                            Text(
-                                '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                                style: textBlack500),
-                          ],
+                        const Spacer(),
+                        Text(
+                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
+                            style: textBlack500),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Shipping Fee",
+                          style: textGray500,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Shipping Fee",
-                              style: textGray500,
-                            ),
-                            const Spacer(),
-                            Text(
-                                '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                                style: textBlack500),
-                          ],
+                        const Spacer(),
+                        Text(
+                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
+                            style: textBlack500),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Total",
+                          style: textGray500,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Total",
-                              style: textGray500,
-                            ),
-                            const Spacer(),
-                            Text(
-                                '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                                style: textBlack500),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                        const Spacer(),
+                        Text(
+                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
+                            style: textBlack500),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -204,7 +190,7 @@ class CartPageView extends StatelessWidget {
 
 Container checkOutButton() {
   return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 10),
+    margin: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 15),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(50),
       color: white,

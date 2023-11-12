@@ -33,7 +33,7 @@ class CartItemContainer extends GetView<CartPageController> {
       ),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 100,
             height: 100,
             child: Image.network(
