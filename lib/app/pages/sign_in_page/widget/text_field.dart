@@ -15,7 +15,23 @@ class TextFieldSignin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'You need to fill this field';
+          }
+          if (text == 'Username') {
+            if (value.length < 6) {
+              return 'Username must be at least 6 characters';
+            }
+            if (!RegExp(r"^[a-zA-Z0-9]+$").hasMatch(value)) {
+              return 'Username can only contain letters and numbers';
+            }
+          }
+
+          return null;
+        },
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         decoration: InputDecoration(
           labelText: text,
@@ -29,6 +45,12 @@ class TextFieldSignin extends StatelessWidget {
           ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: black),
+          ),
+          errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
+          ),
+          focusedErrorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
           ),
         ),
       ),
