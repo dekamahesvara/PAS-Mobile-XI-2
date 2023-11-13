@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/widget/component.dart';
+
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
-import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
+
 import 'package:get/get.dart';
 
 class HomePageView extends StatelessWidget {
@@ -94,141 +94,21 @@ class HomePageView extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(10),
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.6),
-                itemCount: 6,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                    mainAxisExtent: height * 0.4),
+                itemCount: 15,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildProductCard(width * 0.4, height * 0.3);
+                  return buildProductCard();
                 },
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget textHeading(String text) {
-    return Container(
-      padding: const EdgeInsets.only(left: 15),
-      child: Text(text, style: heading),
-    );
-  }
-
-  Widget textblack(String text) {
-    return Container(
-      padding: const EdgeInsets.only(left: 15, bottom: 15),
-      child: Text(text, style: textBlack500),
-    );
-  }
-
-  Widget textgray(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 14),
-      child: Text(text, style: textGray500),
-    );
-  }
-
-  Widget buildCategoryButton(
-      String categoryName, Color colorbutton, Color colortext) {
-    HomePageController controller = Get.find<HomePageController>();
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: ElevatedButton(
-        onPressed: () {
-          controller.selectCategory(categoryName);
-        },
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor:
-              categoryName == controller.selectedCategory.value ? primary : box,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            categoryName,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: categoryName == controller.selectedCategory.value
-                  ? colorbutton
-                  : textGray,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildProductCard(double width, double height) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => const DetailPage(
-              image: 'assets/image_sample.png',
-              name: 'Product Name',
-              price: '\$100.00',
-            ));
-      },
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    constraints: BoxConstraints(
-                      maxHeight: height,
-                      maxWidth: width,
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(
-                        image: AssetImage('assets/image_sample.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.favorite_border),
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Product Name',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '\$100.00',
-                    style: TextStyle(fontSize: 12, color: textGray),
-                  ),
-                ],
-              ),
-            ),
+            )
           ],
         ),
       ),
