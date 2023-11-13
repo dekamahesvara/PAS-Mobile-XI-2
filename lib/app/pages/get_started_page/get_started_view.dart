@@ -93,7 +93,7 @@ class GetStartedView extends StatelessWidget {
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              Get.toNamed('/signup');
+                              Get.toNamed('/home');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primary,
@@ -158,4 +158,6 @@ class GetStartedView extends StatelessWidget {
       ),
     );
   }
+
+  
 }

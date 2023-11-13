@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_view.dart';
@@ -55,6 +56,16 @@ class AppPages {
     GetPage(
       name: Routes.homepage,
       page: () => const HomePageView(),
+      binding: HomePageBinding(),
+    ),
+    GetPage(
+      name: Routes.detailpage,
+      page: () =>  DetailPage(
+        image: Get.arguments['image'],
+        name: Get.arguments['name'],
+        price: Get.arguments['price'],
+        
+      ),
       binding: HomePageBinding(),
     ),
     GetPage(
