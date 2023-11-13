@@ -50,7 +50,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.signuppage,
-      page: () => const SignUpPageView(),
+      page: () => SignUpPageView(),
       binding: SignUpPageBinding(),
     ),
     GetPage(
