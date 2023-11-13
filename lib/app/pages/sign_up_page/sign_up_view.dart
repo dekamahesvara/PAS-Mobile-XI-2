@@ -11,7 +11,8 @@ import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
 class SignUpPageView extends GetView<SignUpPageController> {
-  const SignUpPageView({super.key});
+  SignUpPageView({super.key});
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +37,22 @@ class SignUpPageView extends GetView<SignUpPageController> {
                 ),
               ),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    iconApp(width: width, height: height),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    whiteContainer(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    signUpButton(),
-                  ],
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      iconApp(width: width, height: height),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      whiteContainer(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      signUpButton(context, formKey),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -94,12 +98,14 @@ class SignUpPageView extends GetView<SignUpPageController> {
     );
   }
 
-  Container signUpButton() {
+  Container signUpButton(BuildContext context, GlobalKey<FormState> formKey) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
           onPressed: () {
-            Get.offAllNamed('/home');
+            if (formKey.currentState!.validate()) {
+              Get.offNamed('/signin');
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: white,
