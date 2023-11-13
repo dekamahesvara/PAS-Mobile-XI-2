@@ -29,6 +29,7 @@ class TextFieldObx extends GetView<SignUpPageController> {
 
             return null;
           },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: controller.passwordController,
           obscureText: controller.isObsecure.value,
           decoration: InputDecoration(
@@ -52,6 +53,12 @@ class TextFieldObx extends GetView<SignUpPageController> {
             ),
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: black),
+            ),
+            errorBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: red),
+            ),
+            focusedErrorBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: red),
             ),
           ),
         )));

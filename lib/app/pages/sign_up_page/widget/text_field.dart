@@ -38,6 +38,7 @@ class TextFieldSignUp extends StatelessWidget {
 
           return null;
         },
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         decoration: InputDecoration(
           alignLabelWithHint: true,
@@ -49,6 +50,12 @@ class TextFieldSignUp extends StatelessWidget {
           ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: black),
+          ),
+          errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
+          ),
+          focusedErrorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
           ),
         ),
       ),
