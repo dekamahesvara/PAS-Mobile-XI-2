@@ -98,7 +98,7 @@ class SignInPageView extends GetView<SignInPageController> {
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
           onPressed: () {
-            Get.offAllNamed('/cart');
+            Get.offAllNamed('/home');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: white,

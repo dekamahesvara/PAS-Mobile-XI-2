@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
-import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
-import 'package:get/get.dart';
+import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
+import 'package:get/get.dart';
 
 class HomePageView extends StatelessWidget {
   const HomePageView({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class HomePageView extends StatelessWidget {
     final double height = mediaQuery.height;
 
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +103,7 @@ class HomePageView extends StatelessWidget {
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     childAspectRatio: 0.6),
-                itemCount: 6, // Adjust the itemCount as per your requirement
+                itemCount: 6,
                 itemBuilder: (BuildContext context, int index) {
                   return buildProductCard(width * 0.4, height * 0.3);
                 },
@@ -173,9 +173,7 @@ class HomePageView extends StatelessWidget {
   Widget buildProductCard(double width, double height) {
     return GestureDetector(
       onTap: () {
-        // Navigate to detail page with data using Get.to
         Get.to(() => const DetailPage(
-              // Pass the image, name, and price to the detail page
               image: 'assets/image_sample.png',
               name: 'Product Name',
               price: '\$100.00',
@@ -197,7 +195,7 @@ class HomePageView extends StatelessWidget {
                       maxHeight: height,
                       maxWidth: width,
                     ),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
                         image: AssetImage('assets/image_sample.png'),
@@ -224,7 +222,6 @@ class HomePageView extends StatelessWidget {
                     'Product Name',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
-                  // Product Price
                   Text(
                     '\$100.00',
                     style: TextStyle(fontSize: 12, color: textGray),

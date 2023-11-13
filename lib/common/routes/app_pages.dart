@@ -30,7 +30,7 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.cartpage;
+  static const initial = Routes.splashscreenpage;
 
   static final routes = [
     GetPage(
@@ -60,17 +60,16 @@ class AppPages {
     ),
     GetPage(
       name: Routes.detailpage,
-      page: () =>  DetailPage(
+      page: () => DetailPage(
         image: Get.arguments['image'],
         name: Get.arguments['name'],
         price: Get.arguments['price'],
-        
       ),
       binding: HomePageBinding(),
     ),
     GetPage(
       name: Routes.cartpage,
-      page: () => CartPageView(),
+      page: () => const CartPageView(),
       binding: CartPageBinding(),
     ),
     GetPage(
