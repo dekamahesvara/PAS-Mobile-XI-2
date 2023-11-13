@@ -30,7 +30,7 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.splashscreenpage;
+  static const initial = Routes.getstartedpage;
 
   static final routes = [
     GetPage(
@@ -45,7 +45,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.signinpage,
-      page: () => const SignInPageView(),
+      page: () => SignInPageView(),
       binding: SignInPageBinding(),
     ),
     GetPage(
