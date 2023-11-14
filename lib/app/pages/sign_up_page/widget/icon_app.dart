@@ -15,8 +15,8 @@ class iconApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       'assets/svg/app_logo.svg',
-      width: width * 0.05,
-      height: height * 0.05,
+      width: width * 0.03,
+      height: height * 0.03,
     );
   }
 }

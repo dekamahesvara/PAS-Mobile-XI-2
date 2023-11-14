@@ -84,12 +84,12 @@ class SignUpPageView extends GetView<SignUpPageController> {
             children: [
               TextFieldSignUp(
                   text: "Username", controller: controller.usernameController),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextFieldSignUp(
                   text: "Email", controller: controller.emailController),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const TextFieldObx(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               const textButton(),
             ],
           ),
@@ -104,7 +104,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
       child: ElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              Get.offNamed('/signin');
+              Get.offNamed('/otp');
             }
           },
           style: ElevatedButton.styleFrom(

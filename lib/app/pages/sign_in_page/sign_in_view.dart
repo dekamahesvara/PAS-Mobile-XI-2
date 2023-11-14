@@ -85,10 +85,11 @@ class SignInPageView extends GetView<SignInPageController> {
             children: [
               TextFieldSignin(
                   text: "Username", controller: controller.usernameController),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const TextFieldObx(),
+              const SizedBox(height: 5),
               const BtnForgetPass(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               const TextButtonSignUp(),
             ],
           ),
