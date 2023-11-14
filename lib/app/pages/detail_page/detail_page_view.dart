@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/button_back.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
-
+import 'package:get/get.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 
 class DetailPage extends StatelessWidget {
@@ -99,7 +99,7 @@ class DetailPage extends StatelessWidget {
               child: Row(
                 children: [
                   RatingBar.builder(
-                    initialRating: 3,
+                    initialRating: 4.5,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -117,7 +117,7 @@ class DetailPage extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    "4.8",
+                    "4.5",
                     style: textBlack500,
                   ),
                   const Spacer(),
@@ -138,14 +138,14 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            checkOutButton()
+            AddToCartButton()
           ],
         ),
       ),
     );
   }
 
-  Container checkOutButton() {
+  Container AddToCartButton() {
     return Container(
       margin: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 15),
       decoration: BoxDecoration(
@@ -161,7 +161,9 @@ class DetailPage extends StatelessWidget {
         ],
       ),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed('/cart');
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: primary,
             shape: RoundedRectangleBorder(
@@ -171,7 +173,7 @@ class DetailPage extends StatelessWidget {
           child: Container(
               padding: const EdgeInsets.symmetric(vertical: 20),
               width: double.infinity,
-              child: Text("CheckOut",
+              child: Text("Add To Cart",
                   style: textWhite500, textAlign: TextAlign.center))),
     );
   }
