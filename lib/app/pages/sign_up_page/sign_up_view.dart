@@ -42,7 +42,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      iconApp(width: width, height: height),
+                      IconApp(width: width, height: height),
                       const SizedBox(
                         height: 15,
                       ),
