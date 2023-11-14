@@ -3,6 +3,7 @@ abstract class Routes {
   static const splashscreenpage = '/splash';
   static const getstartedpage = '/getstarted';
   static const signinpage = '/signin';
+  static const otppage = '/otp';
   static const signuppage = '/signup';
   static const homepage = '/home';
   static const cartpage = '/cart';
