@@ -17,13 +17,14 @@ class DetailPage extends StatelessWidget {
     'assets/image_sample.png',
     'assets/image_sample.png',
     'assets/image_sample.png',
-
-    // Add more variant images as needed
   ];
 
-  DetailPage(
-      {required this.image, required this.name, required this.price, Key? key})
-      : super(key: key);
+  DetailPage({
+    required this.image,
+    required this.name,
+    required this.price,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +60,8 @@ class DetailPage extends StatelessWidget {
                 ),
               ],
             ),
-            // ignore: sized_box_for_whitespace
-            Container(
-              height: 100, // Adjust the height as needed
+            SizedBox(
+              height: 100,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: variantImages.length,
@@ -138,14 +138,14 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            AddToCartButton()
+            addToCartButton()
           ],
         ),
       ),
     );
   }
 
-  Container AddToCartButton() {
+  Container addToCartButton() {
     return Container(
       margin: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 15),
       decoration: BoxDecoration(

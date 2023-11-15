@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/widget/build_product_card.dart';
 import 'package:pas_mobile_xi_2/app/pages/home_page/widget/component.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:get/get.dart';
@@ -8,9 +9,6 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double height = mediaQuery.height;
-
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -19,7 +17,7 @@ class HomePageView extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(
-                top: 20,
+                top: 50,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +32,7 @@ class HomePageView extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: const TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -57,8 +55,11 @@ class HomePageView extends StatelessWidget {
                 ),
               ),
             ),
-            Container(child: textblack("Categories")),
-            SizedBox(
+            Container(
+                margin: const EdgeInsets.only(top: 15, left: 15, bottom: 10),
+                child: textblack("Categories")),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
               height: 50,
               child: Obx(
                 () => ListView(
@@ -74,21 +75,18 @@ class HomePageView extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(20),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    mainAxisExtent: height * 0.35),
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) {
-                  return buildProductCard();
-                },
-              ),
-            ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      primary,
+                      secondary,
+                    ],
+                  ),
+                ),
+                child: BuildProductCardHome()),
             const SizedBox(
               height: 80,
             )
