@@ -1,8 +1,8 @@
-class CartModel {
+class ItemModel {
   String productName, productImage;
   int productPrice;
 
-  CartModel(
+  ItemModel(
       {required this.productName,
       required this.productImage,
       required this.productPrice});
