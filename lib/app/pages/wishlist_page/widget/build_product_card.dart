@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
@@ -18,11 +17,7 @@ class BuildProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailPage(
-              image: image,
-              name: name,
-              price: price.toString(),
-            ));
+        Get.toNamed('detail');
       },
       child: Container(
         padding: const EdgeInsets.all(10),

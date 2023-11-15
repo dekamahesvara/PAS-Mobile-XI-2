@@ -67,11 +67,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.detailpage,
-      page: () => DetailPage(
-        image: Get.arguments['image'],
-        name: Get.arguments['name'],
-        price: Get.arguments['price'],
-      ),
+      page: () => DetailPage(),
       binding: HomePageBinding(),
     ),
     GetPage(

@@ -31,7 +31,7 @@ class BuildProductCardHome extends StatelessWidget {
                       homePageController.responseModel.value.products[index];
                   return GestureDetector(
                     onTap: () {
-                      Get.toNamed('detail', arguments: data.id);
+                      Get.toNamed('detail', arguments: data.id.toString());
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),

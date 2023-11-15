@@ -1,180 +1,186 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/button_back.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_controller.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
-import 'package:get/get.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
+import 'package:get/get.dart';
 
-class DetailPage extends StatelessWidget {
-  final String image;
-  final String name;
-  final String price;
-
-  final List<String> variantImages = [
-    'assets/image_sample.png',
-    'assets/image_sample.png',
-    'assets/image_sample.png',
-    'assets/image_sample.png',
-    'assets/image_sample.png',
-    'assets/image_sample.png',
-  ];
-
-  DetailPage({
-    required this.image,
-    required this.name,
-    required this.price,
-    Key? key,
-  }) : super(key: key);
+class DetailPage extends GetView<DetailPageController> {
+  DetailPage({super.key});
+  final DetailPageController homePageController =
+      Get.put(DetailPageController());
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
-    final double height = mediaQuery.height;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(children: [
-              Image.asset(image,
-                  width: width, height: height * 0.5, fit: BoxFit.contain),
-              const ButtonBack()
-            ]),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    name,
-                    style: textBlack600,
-                  ),
+    return Obx(() {
+      return controller.data.value.title.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back),
                 ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    price,
-                    style: textBlack600,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: variantImages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        variantImages[index],
-                        width: 80,
-                        fit: BoxFit.fitHeight,
+              ),
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Image.network(
+                        controller.data.value.thumbnail,
+                        height: 350,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Description",
-                    style: textBlack600,
-                  ),
-                  const Text(
-                      "The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with")
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  RatingBar.builder(
-                    initialRating: 4.5,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemSize: 25,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            controller.data.value.title.length > 30
+                                ? '${controller.data.value.title.substring(0, 30)}...'
+                                : controller.data.value.title,
+                            style: textBlack600,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "\$${controller.data.value.price.toString()}.00",
+                            style: textBlack500,
+                          ),
+                        ),
+                      ],
                     ),
-                    onRatingUpdate: (double value) {},
-                    ignoreGestures: true,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "4.5",
-                    style: textBlack500,
-                  ),
-                  const Spacer(),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    width: width * 0.15,
-                    height: height * 0.06,
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite,
-                          color: white,
-                        )),
-                  )
-                ],
+                    Container(
+                      height: 150,
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            primary,
+                            secondary,
+                          ],
+                        ),
+                      ),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.data.value.images.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            padding: const EdgeInsets.all(6),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                controller.data.value.images[index],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Description",
+                            style: textBlack600,
+                          ),
+                          Text(controller.data.value.description),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        children: [
+                          RatingBar.builder(
+                            initialRating:
+                                controller.data.value.rating.toDouble(),
+                            itemCount: 1,
+                            itemSize: 30,
+                            itemPadding:
+                                const EdgeInsets.symmetric(horizontal: 0.5),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: star,
+                            ),
+                            onRatingUpdate: (double value) {},
+                            ignoreGestures: true,
+                          ),
+                          Text(
+                            "${controller.data.value.rating.toString()} | ${controller.data.value.stock.toString()} stock ",
+                            style: textBlack400,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(children: [
+                      addToCartButton(),
+                      Container(
+                        margin: const EdgeInsets.only(
+                            right: 15, bottom: 15, left: 15),
+                        height: 60,
+                        width: 60,
+                        child: CircleAvatar(
+                          backgroundColor: primary,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.favorite,
+                              color: white,
+                            ),
+                          ),
+                        ),
+                      )
+                    ])
+                  ],
+                ),
               ),
-            ),
-            addToCartButton()
-          ],
-        ),
-      ),
-    );
+            );
+    });
   }
 
-  Container addToCartButton() {
-    return Container(
-      margin: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        color: white,
-        boxShadow: [
-          BoxShadow(
-            color: black.withOpacity(0.2),
-            spreadRadius: 4,
-            blurRadius: 12,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-          onPressed: () {
-            Get.toNamed('/cart');
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
+  Expanded addToCartButton() {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.only(left: 15, bottom: 15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            BoxShadow(
+              color: black.withOpacity(0.2),
+              spreadRadius: 4,
+              blurRadius: 12,
+              offset: const Offset(0, 6),
             ),
-          ),
-          child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              width: double.infinity,
-              child: Text("Add To Cart",
-                  style: textWhite500, textAlign: TextAlign.center))),
+          ],
+        ),
+        child: ElevatedButton(
+            onPressed: () {
+              Get.toNamed('/cart');
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text("Add To Cart",
+                    style: textWhite500, textAlign: TextAlign.center))),
+      ),
     );
   }
 }
