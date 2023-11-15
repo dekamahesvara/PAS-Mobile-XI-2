@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/app/pages/home_page/widget/component.dart';
-
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
-
 import 'package:get/get.dart';
 
 class HomePageView extends StatelessWidget {
@@ -11,7 +9,6 @@ class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
     return Scaffold(
@@ -20,38 +17,21 @@ class HomePageView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 10, top: 30, bottom: 20),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: box,
+            Container(
+              margin: const EdgeInsets.only(
+                top: 20,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  textHeading(
+                    "Hello",
                   ),
-                  child: ClipOval(
-                    child: IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.black),
-                      onPressed: () {},
-                    ),
+                  textgray(
+                    "Welcome to Thrivee",
                   ),
-                ),
-                Positioned(
-                  top: 10,
-                  left: width * 0.2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      textHeading(
-                        "Hello",
-                      ),
-                      textgray(
-                        "Welcome to Thrivee",
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -78,36 +58,39 @@ class HomePageView extends StatelessWidget {
               ),
             ),
             Container(child: textblack("Categories")),
-            Container(
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              height: height * 0.05,
+            SizedBox(
+              height: 50,
               child: Obx(
                 () => ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
                     buildCategoryButton("All", box, textWhite),
-                    buildCategoryButton("Smartphone", box, textGray),
-                    buildCategoryButton("Labtop", box, textGray),
-                    buildCategoryButton("Skincare", box, textGray),
+                    buildCategoryButton("Smartphones", box, textGray),
+                    buildCategoryButton("Laptops", box, textGray),
+                    buildCategoryButton("Fragrances", box, textGray),
+                    buildCategoryButton("Groceries", box, textGray),
                   ],
                 ),
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(20),
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    mainAxisExtent: height * 0.4),
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    mainAxisExtent: height * 0.35),
                 itemCount: 15,
                 itemBuilder: (BuildContext context, int index) {
                   return buildProductCard();
                 },
               ),
+            ),
+            const SizedBox(
+              height: 80,
             )
           ],
         ),

@@ -1,8 +1,8 @@
 import 'package:pas_mobile_xi_2/app/models/item_model.dart';
 
-List<ItemModel> cartItems = [
+List<ItemModel> wishlistItems = [
   ItemModel(
-    productName: "MacBook Pro",
+    productName: "MacBook Prosss",
     productImage: "https://i.dummyjson.com/data/products/6/1.png",
     productPrice: 1001,
   ),
@@ -78,6 +78,6 @@ List<ItemModel> cartItems = [
   ),
 ];
 
-addEvent(ItemModel cartitemmodel) {
-  cartItems.add(cartitemmodel);
+addEvent(ItemModel wishlistitemmodel) {
+  wishlistItems.add(wishlistitemmodel);
 }

@@ -12,13 +12,11 @@ class CartPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        title: Center(
+            child: Text(
+          'Cart',
+          style: textBlack600,
+        )),
       ),
       body: Column(
         children: [
@@ -181,7 +179,10 @@ class CartPageView extends StatelessWidget {
               ],
             ),
           ),
-          checkOutButton()
+          checkOutButton(),
+          const SizedBox(
+            height: 50,
+          )
         ],
       ),
     );
