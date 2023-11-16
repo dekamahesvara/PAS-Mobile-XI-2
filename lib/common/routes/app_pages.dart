@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_view.dart';
@@ -29,12 +32,12 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.getstartedpage;
+  static const initial = Routes.splashscreenpage;
 
   static final routes = [
     GetPage(
       name: Routes.splashscreenpage,
-      page: () => const SplashScreenPageView(),
+      page: () => SplashScreenPageView(),
       binding: SplashScreenPageBinding(),
     ),
     GetPage(
@@ -44,17 +47,27 @@ class AppPages {
     ),
     GetPage(
       name: Routes.signinpage,
-      page: () => const SignInPageView(),
+      page: () => SignInPageView(),
       binding: SignInPageBinding(),
     ),
     GetPage(
+      name: Routes.otppage,
+      page: () => OtpPageView(),
+      binding: OtpPageBinding(),
+    ),
+    GetPage(
       name: Routes.signuppage,
-      page: () => const SignUpPageView(),
+      page: () => SignUpPageView(),
       binding: SignUpPageBinding(),
     ),
     GetPage(
       name: Routes.homepage,
       page: () => const HomePageView(),
+      binding: HomePageBinding(),
+    ),
+    GetPage(
+      name: Routes.detailpage,
+      page: () => DetailPage(),
       binding: HomePageBinding(),
     ),
     GetPage(

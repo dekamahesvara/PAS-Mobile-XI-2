@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_splash_screen:
   page_transition:
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,10 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_svg:
   get:
+  email_validator:
+  provider:
+  http:
+  shared_preferences:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -64,6 +69,7 @@ flutter:
   assets:
     - assets/
     - assets/svg/
+    - assets/image_sample.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
