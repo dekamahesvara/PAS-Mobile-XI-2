@@ -14,6 +14,10 @@ class SignUpPageView extends GetView<SignUpPageController> {
   SignUpPageView({super.key});
   final formKey = GlobalKey<FormState>();
 
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -82,13 +86,11 @@ class SignUpPageView extends GetView<SignUpPageController> {
           ),
           Column(
             children: [
-              TextFieldSignUp(
-                  text: "Username", controller: controller.usernameController),
+              TextFieldSignUp(text: "Username", controller: usernameController),
               const SizedBox(height: 10),
-              TextFieldSignUp(
-                  text: "Email", controller: controller.emailController),
+              TextFieldSignUp(text: "Email", controller: emailController),
               const SizedBox(height: 10),
-              const TextFieldObx(),
+              TextFieldObx(passwordController: passwordController),
               const SizedBox(height: 40),
               const textButton(),
             ],
@@ -104,7 +106,8 @@ class SignUpPageView extends GetView<SignUpPageController> {
       child: ElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              Get.offNamed('/otp');
+              controller.emailVerify(context, usernameController.text,
+                  emailController.text, passwordController.text);
             }
           },
           style: ElevatedButton.styleFrom(

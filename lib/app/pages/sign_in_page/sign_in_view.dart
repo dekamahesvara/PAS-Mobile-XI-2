@@ -106,7 +106,7 @@ class SignInPageView extends GetView<SignInPageController> {
       child: ElevatedButton(
           onPressed: () async {
             if (formKey.currentState!.validate()) {
-              controller.loadData(controller.emailController.text,
+              controller.signIn(controller.emailController.text,
                   controller.passwordController.text);
             }
           },

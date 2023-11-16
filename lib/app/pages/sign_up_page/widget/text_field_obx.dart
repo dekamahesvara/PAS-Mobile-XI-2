@@ -6,7 +6,10 @@ import 'package:get/get.dart';
 class TextFieldObx extends GetView<SignUpPageController> {
   const TextFieldObx({
     super.key,
+    required this.passwordController,
   });
+
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class TextFieldObx extends GetView<SignUpPageController> {
                 return null;
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: controller.passwordController,
+              controller: passwordController,
               obscureText: controller.isObsecure.value,
               decoration: InputDecoration(
                 alignLabelWithHint: true,

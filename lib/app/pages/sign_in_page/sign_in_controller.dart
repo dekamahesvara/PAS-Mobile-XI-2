@@ -12,7 +12,7 @@ class SignInPageController extends GetxController {
     token: '',
   ).obs;
 
-  loadData(String email, String password) async {
+  signIn(String email, String password) async {
     try {
       final response = await http.post(
           Uri.parse(
