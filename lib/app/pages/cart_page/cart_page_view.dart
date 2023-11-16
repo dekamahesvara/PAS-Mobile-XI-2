@@ -3,7 +3,6 @@ import 'package:pas_mobile_xi_2/app/data/cart_data.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
-import 'package:get/get.dart';
 
 class CartPageView extends StatelessWidget {
   const CartPageView({Key? key}) : super(key: key);

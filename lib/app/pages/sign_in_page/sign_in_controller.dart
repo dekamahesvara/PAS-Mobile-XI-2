@@ -1,9 +1,9 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/app/models/sign_in_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'dart:convert';
 
 class SignInPageController extends GetxController {
   Rx<SignInModel> loginModel = SignInModel(
@@ -20,13 +20,13 @@ class SignInPageController extends GetxController {
           headers: {
             "Content-Type": "application/json",
           },
-          body: jsonEncode({"email": "$email", "password": "$password"}));
+          body: jsonEncode({"email": email, "password": password}));
 
       if (response.statusCode == 200) {
         loginModel.value = signInModelFromJson(response.body);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', loginModel.value.token);
-        Get.offNamed("/home");
+        Get.offAllNamed("/home");
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }

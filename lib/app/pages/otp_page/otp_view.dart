@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/pages/sign_up_page/sign_up_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/widget/icon_app.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/widget/text_field.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/widget/text_title.dart';
-import 'package:pas_mobile_xi_2/app/pages/sign_up_page/sign_up_controller.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpPageView extends GetView<OtpPageController> {
   OtpPageView({super.key});
   final formKey = GlobalKey<FormState>();
-
   final SignUpPageController signUpPageController =
       Get.put(SignUpPageController());
 
@@ -45,7 +44,7 @@ class OtpPageView extends GetView<OtpPageController> {
                   const SizedBox(
                     height: 15,
                   ),
-                  whiteContainer(),
+                  whiteContainer(context),
                   const SizedBox(
                     height: 15,
                   ),
@@ -59,7 +58,7 @@ class OtpPageView extends GetView<OtpPageController> {
     );
   }
 
-  Container whiteContainer() {
+  Container whiteContainer(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       constraints: const BoxConstraints(maxWidth: 400),
@@ -93,9 +92,42 @@ class OtpPageView extends GetView<OtpPageController> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Obx(() => controller.enableResend.value
+                  ? Row(
+                      children: [
+                        Text(
+                          'Didn\'t receive the code? ',
+                          style: textGray400,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            signUpPageController.otpSend(
+                              context,
+                              signUpPageController.email.value,
+                            );
+                            controller.restartTimer();
+                            controller.enableResend.value = false;
+                          },
+                          child: Text(
+                            'Resend',
+                            style: textBlack400,
+                          ),
+                        ),
+                      ],
+                    )
+                  : TextButton(
+                      onPressed: null,
+                      child: Text(
+                        'Resend in ${controller.secondsRemaining} seconds',
+                        style: textBlack400,
+                      ),
+                    )),
+            ],
+          )
         ],
       ),
     );
