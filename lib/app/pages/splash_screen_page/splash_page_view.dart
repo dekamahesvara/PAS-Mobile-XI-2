@@ -3,10 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pas_mobile_xi_2/app/pages/get_started_page/get_started_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/splash_screen_page/splash_page_controller.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:get/get.dart';
 
-class SplashScreenPageView extends StatelessWidget {
-  const SplashScreenPageView({Key? key}) : super(key: key);
+class SplashScreenPageView extends GetView<SplashScreenPageController> {
+  SplashScreenPageView({Key? key}) : super(key: key);
+
+  final SplashScreenPageController signInPageController =
+      Get.put(SplashScreenPageController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:email_validator/email_validator.dart';
 
-class textField extends StatelessWidget {
-  const textField({
+class TextFieldSignin extends StatelessWidget {
+  const TextFieldSignin({
     super.key,
     required this.text,
     required this.controller,
@@ -15,8 +15,21 @@ class textField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: TextField(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'You need to fill this field';
+          }
+          if (text == 'Email') {
+            if (!EmailValidator.validate(value)) {
+              return 'Please enter a valid email address';
+            }
+          }
+
+          return null;
+        },
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         decoration: InputDecoration(
           labelText: text,
@@ -30,6 +43,12 @@ class textField extends StatelessWidget {
           ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: black),
+          ),
+          errorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
+          ),
+          focusedErrorBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: red),
           ),
         ),
       ),

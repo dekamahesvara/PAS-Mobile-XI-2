@@ -34,10 +34,12 @@ class GetStartedView extends StatelessWidget {
                 width: width * 0.05,
                 height: height * 0.05,
               ),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
-                margin: const EdgeInsets.symmetric(vertical: 15),
                 padding: const EdgeInsets.all(20),
-                width: width * 0.9,
+                constraints: const BoxConstraints(maxWidth: 400),
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(20),
@@ -45,26 +47,29 @@ class GetStartedView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 50, bottom: 50),
-                      child: Text(
-                        "Let's Get Started",
-                        style: heading,
-                      ),
+                    const SizedBox(
+                      height: 50,
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 50),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          signInButton(width, height, "Facebook",
-                              'assets/svg/facebook_logo.svg', facebook),
-                          signInButton(width, height, "Twitter",
-                              'assets/svg/twitter_logo.svg', twitter),
-                          signInButton(width, height, "Google",
-                              'assets/svg/google_logo.svg', google),
-                        ],
-                      ),
+                    Text(
+                      "Let's Get Started",
+                      style: heading,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        signInButton(width, height, "Facebook",
+                            'assets/svg/facebook_logo.svg', facebook),
+                        signInButton(width, height, "Twitter",
+                            'assets/svg/twitter_logo.svg', twitter),
+                        signInButton(width, height, "Google",
+                            'assets/svg/google_logo.svg', google),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 50,
                     ),
                     Column(
                       children: [
@@ -128,7 +133,7 @@ class GetStartedView extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: height * 0.02),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
