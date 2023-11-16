@@ -13,10 +13,8 @@ import 'package:get/get.dart';
 class SignUpPageView extends GetView<SignUpPageController> {
   SignUpPageView({super.key});
   final formKey = GlobalKey<FormState>();
-
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final SignUpPageController signUpPageController =
+      Get.put(SignUpPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -86,11 +84,17 @@ class SignUpPageView extends GetView<SignUpPageController> {
           ),
           Column(
             children: [
-              TextFieldSignUp(text: "Username", controller: usernameController),
+              TextFieldSignUp(
+                text: "Username",
+                controller: controller.usernameController,
+              ),
               const SizedBox(height: 10),
-              TextFieldSignUp(text: "Email", controller: emailController),
+              TextFieldSignUp(
+                text: "Email",
+                controller: controller.emailController,
+              ),
               const SizedBox(height: 10),
-              TextFieldObx(passwordController: passwordController),
+              TextFieldObx(passwordController: controller.passwordController),
               const SizedBox(height: 40),
               const textButton(),
             ],
@@ -106,8 +110,12 @@ class SignUpPageView extends GetView<SignUpPageController> {
       child: ElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              controller.emailVerify(context, usernameController.text,
-                  emailController.text, passwordController.text);
+              controller.emailVerify(
+                  context,
+                  controller.usernameController.text,
+                  controller.emailController.text,
+                  controller.passwordController.text);
+              FocusScope.of(context).unfocus();
             }
           },
           style: ElevatedButton.styleFrom(

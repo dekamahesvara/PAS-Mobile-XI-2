@@ -13,7 +13,11 @@ class BuildProductCardHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return homePageController.responseModel.value.products.isEmpty
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: Padding(
+              padding: EdgeInsets.all(10),
+              child: CircularProgressIndicator(),
+            ))
           : Padding(
               padding: const EdgeInsets.all(10),
               child: GridView.builder(
