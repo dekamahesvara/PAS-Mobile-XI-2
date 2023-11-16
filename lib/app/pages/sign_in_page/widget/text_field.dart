@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:email_validator/email_validator.dart';
 
 class TextFieldSignin extends StatelessWidget {
   const TextFieldSignin({
@@ -20,12 +21,9 @@ class TextFieldSignin extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return 'You need to fill this field';
           }
-          if (text == 'Username') {
-            if (value.length < 6) {
-              return 'Username must be at least 6 characters';
-            }
-            if (!RegExp(r"^[a-zA-Z0-9]+$").hasMatch(value)) {
-              return 'Username can only contain letters and numbers';
+          if (text == 'Email') {
+            if (!EmailValidator.validate(value)) {
+              return 'Please enter a valid email address';
             }
           }
 

@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 class SignInPageView extends GetView<SignInPageController> {
   SignInPageView({super.key});
   final formKey = GlobalKey<FormState>();
+  final SignInPageController signInPageController =
+      Get.put(SignInPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class SignInPageView extends GetView<SignInPageController> {
           Column(
             children: [
               TextFieldSignin(
-                  text: "Username", controller: controller.usernameController),
+                  text: "Email", controller: controller.emailController),
               const SizedBox(height: 10),
               const TextFieldObx(),
               const SizedBox(height: 5),
@@ -102,9 +104,10 @@ class SignInPageView extends GetView<SignInPageController> {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             if (formKey.currentState!.validate()) {
-              Get.offAllNamed('/home');
+              controller.loadData(controller.emailController.text,
+                  controller.passwordController.text);
             }
           },
           style: ElevatedButton.styleFrom(
