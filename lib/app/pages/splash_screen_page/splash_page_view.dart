@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pas_mobile_xi_2/app/pages/get_started_page/get_started_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_view.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 
 class SplashScreenPageView extends StatelessWidget {
@@ -32,7 +33,7 @@ class SplashScreenPageView extends StatelessWidget {
           width: width * 0.1,
           height: height * 0.1,
         ),
-        nextScreen: const GetStartedView(),
+        nextScreen: const PaymentPageView(),
         splashTransition: SplashTransition.fadeTransition,
         animationDuration: const Duration(milliseconds: 1000),
         pageTransitionType: PageTransitionType.fade,

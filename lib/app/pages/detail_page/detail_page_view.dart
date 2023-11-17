@@ -162,7 +162,7 @@ class DetailPage extends StatelessWidget {
       ),
       child: ElevatedButton(
           onPressed: () {
-            Get.toNamed('/cart');
+            Get.toNamed('/payment');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: primary,
