@@ -1,4 +1,3 @@
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
@@ -70,37 +69,31 @@ class BuildProductCardHome extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Column(
+                          Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                data.title,
-                                style: textBlack500,
-                              ),
-                              Row(
-                                children: [
-                                  RatingBar.builder(
-                                    initialRating: data.rating.toDouble(),
-                                    itemCount: 1,
-                                    itemSize: 20,
-                                    itemPadding: const EdgeInsets.symmetric(
-                                        horizontal: 0.5),
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star,
-                                      color: star,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      data.title,
+                                      style: textBlack500,
                                     ),
-                                    onRatingUpdate: (double value) {},
-                                    ignoreGestures: true,
-                                  ),
-                                  Text(
-                                    "${data.rating.toString()} | ${data.stock.toString()} stock ",
-                                    style: textBlack400,
-                                  ),
-                                ],
+                                    Text(
+                                      "\$${data.price.toString()}",
+                                      style: textBlack600,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Icon(
+                                Icons.star,
+                                color: star,
                               ),
                               Text(
-                                "\$${data.price.toString()}.00",
-                                style: textBlack700,
+                                data.rating.toString(),
+                                style: textBlack400,
                               ),
                             ],
                           ),
