@@ -33,7 +33,7 @@ class SplashScreenPageView extends StatelessWidget {
           width: width * 0.1,
           height: height * 0.1,
         ),
-        nextScreen: const PaymentPageView(),
+        nextScreen: const GetStartedView(),
         splashTransition: SplashTransition.fadeTransition,
         animationDuration: const Duration(milliseconds: 1000),
         pageTransitionType: PageTransitionType.fade,

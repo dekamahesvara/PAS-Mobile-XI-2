@@ -3,6 +3,6 @@ class PaymentModel {
   late String name;
 
   PaymentModel(String image, this.name) {
-    this.image = "assets/images/payment/$image\.svg";
+    this.image = "assets/payment/$image";
   }
 }

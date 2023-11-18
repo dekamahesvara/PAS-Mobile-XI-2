@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pas_mobile_xi_2/app/data/cart_data.dart';
+import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
 class CartPageView extends StatelessWidget {
-  const CartPageView({Key? key}) : super(key: key);
+  final CartPageController controller = Get.put(CartPageController());
+  CartPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CartPageView extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
       ),
@@ -115,7 +117,9 @@ class CartPageView extends StatelessWidget {
                         Icons.arrow_forward_ios,
                         color: black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed("/payment");
+                      },
                     ),
                   ],
                 ),
@@ -123,13 +127,20 @@ class CartPageView extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.payment,
-                        color: Colors.black,
-                        size: 40,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Obx(
+                          () => Image.asset(
+                            controller.selectedPaymentMethodImage.value,
+                            height: 50,
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 15),
-                      Text("Gopay", style: textBlack500),
+                      Obx(
+                        () =>  Text(controller.selectedPaymentMethodName.value,
+                            style: textBlack500),
+                      ),
                     ],
                   ),
                 ),
