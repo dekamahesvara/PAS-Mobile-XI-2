@@ -10,4 +10,6 @@ abstract class Routes {
   static const wishlistpage = '/wishlist';
   static const paymentpage = '/payment';
   static const detailpage = '/detail';
+  static const profilpage = '/profil';
+
 }
