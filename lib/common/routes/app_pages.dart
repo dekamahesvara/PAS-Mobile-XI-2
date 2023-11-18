@@ -5,6 +5,8 @@ import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_view.dart';
@@ -32,7 +34,7 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.splashscreenpage;
+  static const initial = Routes.profilpage;
 
   static final routes = [
     GetPage(
@@ -84,6 +86,11 @@ class AppPages {
       name: Routes.paymentpage,
       page: () => const PaymentPageView(),
       binding: PaymentPageBinding(),
+    ),
+    GetPage(
+      name: Routes.profilpage,
+      page: () => const ProfilePageView(),
+      binding: ProfilePageBinding(),
     ),
   ];
 }
