@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/data/cart_data.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
@@ -85,24 +86,33 @@ class CartPageView extends GetView<CartPageController> {
                           Icons.arrow_forward_ios,
                           color: black,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed("/payment");
+                        },
                       ),
                     ],
                   ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 5),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.payment,
-                          color: Colors.black,
-                          size: 40,
+                  margin: const EdgeInsets.only(bottom: 5),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Obx(
+                          () => Image.asset(
+                            controller.selectedPaymentMethodImage.value,
+                            height: 50,
+                          ),
                         ),
-                        const SizedBox(width: 15),
-                        Text("Gopay", style: textBlack500),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 15),
+                      Obx(
+                        () =>  Text(controller.selectedPaymentMethodName.value,
+                            style: textBlack500),
+                      ),
+                    ],
                   ),
+                ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
