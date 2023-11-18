@@ -36,7 +36,7 @@ class WishlistPageView extends StatelessWidget {
                   return BuildProductCard(
                     image: wishlistItems[index].productImage,
                     name: wishlistItems[index].productName,
-                    price: wishlistItems[index].productPrice,
+                    price: wishlistItems[index].productPrice.toInt(),
                   );
                 },
               ),

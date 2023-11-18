@@ -54,6 +54,7 @@ dev_dependencies:
   provider:
   http:
   shared_preferences:
+  get_storage:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

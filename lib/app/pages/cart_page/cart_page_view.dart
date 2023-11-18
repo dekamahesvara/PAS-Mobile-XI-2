@@ -1,28 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/data/cart_data.dart';
+import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
+import 'package:get/get.dart';
 
-class CartPageView extends StatelessWidget {
+class CartPageView extends GetView<CartPageController> {
   const CartPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-            child: Text(
-          'Cart',
-          style: textBlack600,
-        )),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              padding: const EdgeInsets.all(5),
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
+          title: Text(
+            'Cart',
+            style: textBlack600,
+          ),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: black.withOpacity(0.2),
+                      spreadRadius: 4,
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Obx(() {
+                  return ListView.builder(
+                    itemCount: controller.cartItems.length,
+                    itemBuilder: (context, index) {
+                      return CartItemContainer(
+                        image: controller.cartItems[index].productImage,
+                        name: controller.cartItems[index].productName,
+                        price: controller.cartItems[index].productPrice.toInt(),
+                        index: index,
+                      );
+                    },
+                  );
+                }),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: white,
                 borderRadius: BorderRadius.circular(15),
@@ -35,176 +71,95 @@ class CartPageView extends StatelessWidget {
                   ),
                 ],
               ),
-              child: ListView.builder(
-                itemCount: cartItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CartItemContainer(
-                    image: cartItems[index].productImage,
-                    name: cartItems[index].productName,
-                    price: cartItems[index].productPrice,
-                  );
-                },
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(10),
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: black.withOpacity(0.2),
-                  spreadRadius: 4,
-                  blurRadius: 12,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Delivery Address",
-                      style: textBlack600,
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: black,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  child: Row(
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: black,
-                        size: 40,
+                      Text(
+                        "Payment Method",
+                        style: textBlack600,
                       ),
-                      const SizedBox(width: 15),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      const Spacer(),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.arrow_forward_ios,
+                          color: black,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.payment,
+                          color: Colors.black,
+                          size: 40,
+                        ),
+                        const SizedBox(width: 15),
+                        Text("Gopay", style: textBlack500),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Order Info",
+                        style: textBlack600,
+                      ),
+                      Row(
                         children: [
-                          Text("123 Main Street", style: textBlack500),
-                          Text("New York City", style: textGray400),
+                          Text(
+                            "Total",
+                            style: textGray500,
+                          ),
+                          const Spacer(),
+                          Obx(() {
+                            if (controller.cartItems.isNotEmpty) {
+                              return Text(
+                                '\$${controller.totalCartPrice.value.toString()}',
+                                style: textBlack500,
+                              );
+                            } else {
+                              return Text(
+                                '\$0',
+                                style: textBlack500,
+                              );
+                            }
+                          }),
                         ],
                       ),
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Payment Method",
-                      style: textBlack600,
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: black,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.payment,
-                        color: Colors.black,
-                        size: 40,
-                      ),
-                      const SizedBox(width: 15),
-                      Text("Gopay", style: textBlack500),
-                    ],
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Order Info",
-                      style: textBlack600,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Subtotal",
-                          style: textGray500,
-                        ),
-                        const Spacer(),
-                        Text(
-                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                            style: textBlack500),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Shipping Fee",
-                          style: textGray500,
-                        ),
-                        const Spacer(),
-                        Text(
-                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                            style: textBlack500),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Total",
-                          style: textGray500,
-                        ),
-                        const Spacer(),
-                        Text(
-                            '\$${cartItems.map((e) => e.productPrice).reduce((value, element) => value + element)}',
-                            style: textBlack500),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          checkOutButton(),
-          const SizedBox(
-            height: 50,
-          )
-        ],
-      ),
-    );
+            const SizedBox(
+              height: 100,
+            )
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Row(children: [checkOutButton(controller)]));
   }
 }
 
-Container checkOutButton() {
-  return Container(
-    margin: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 15),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(50),
-      color: white,
-      boxShadow: [
-        BoxShadow(
-          color: black.withOpacity(0.2),
-          spreadRadius: 4,
-          blurRadius: 12,
-          offset: const Offset(0, 6),
-        ),
-      ],
-    ),
-    child: ElevatedButton(
-        onPressed: () {},
+Expanded checkOutButton(controller) {
+  return Expanded(
+    child: Container(
+      margin: const EdgeInsets.only(left: 15, right: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: ElevatedButton(
+        onPressed: () {
+          for (var item in controller.cartItems) {
+            print(item.toJson());
+          }
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: primary,
           shape: RoundedRectangleBorder(
@@ -212,9 +167,14 @@ Container checkOutButton() {
           ),
         ),
         child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            width: double.infinity,
-            child: Text("CheckOut",
-                style: textWhite500, textAlign: TextAlign.center))),
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Text(
+            "CheckOut",
+            style: textWhite500,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    ),
   );
 }

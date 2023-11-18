@@ -5,14 +5,16 @@ import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
 class CartItemContainer extends GetView<CartPageController> {
-  const CartItemContainer(
-      {super.key,
-      required this.name,
-      required this.image,
-      required this.price});
+  const CartItemContainer({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.price,
+    required this.index,
+  });
 
   final String name, image;
-  final int price;
+  final int price, index;
 
   @override
   Widget build(BuildContext context) {
@@ -48,29 +50,52 @@ class CartItemContainer extends GetView<CartPageController> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(name, style: textBlack600),
-              Text('\$${price.toStringAsFixed(2)}', style: textGray400),
-              Obx(() {
-                return Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.remove),
-                      onPressed: () {},
-                    ),
-                    Text(controller.quantity.toString()),
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {},
-                    ),
-                  ],
-                );
-              })
+              Row(
+                children: [
+                  Text(
+                    name,
+                    style: textBlack500,
+                    overflow: TextOverflow.visible,
+                  ),
+                ],
+              ),
+              Text('\$${price..toString()}', style: textGray400),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      if (controller.cartItems[index].quantity > 1) {
+                        controller.cartItems[index].quantity--;
+                        controller.updateTotalCartPrice();
+                        controller.saveCartItems();
+                        print(controller.cartItems[index].quantity.toString());
+                      } else {
+                        controller.removeItemFromCart(index);
+                      }
+                    },
+                  ),
+                  Obx(() =>
+                      Text(controller.cartItems[index].quantity.toString())),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      controller.cartItems[index].quantity++;
+                      controller.updateTotalCartPrice();
+                      controller.saveCartItems();
+                      print(controller.cartItems[index].quantity.toString());
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () {
+              controller.removeItemFromCart(index);
+            },
           ),
         ],
       ),

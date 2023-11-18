@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/models/item_model.dart';
+import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/description.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/image_slideshow.dart';
@@ -14,11 +16,12 @@ class DetailPage extends GetView<DetailPageController> {
   DetailPage({Key? key}) : super(key: key);
   final DetailPageController homePageController =
       Get.put(DetailPageController());
+  final CartPageController cartPageController = Get.put(CartPageController());
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return controller.data.value.title.isEmpty
+      return controller.data.value.images.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : Scaffold(
               appBar: AppBar(
@@ -82,6 +85,13 @@ class DetailPage extends GetView<DetailPageController> {
         ),
         child: ElevatedButton(
           onPressed: () {
+            cartPageController.addEvent(ItemModel(
+              productName: controller.data.value.title,
+              productImage: controller.data.value.thumbnail,
+              productPrice:
+                  double.parse(controller.data.value.price.toString()),
+            ));
+            cartPageController.calculateTotalCartPrice();
             Get.toNamed('/cart');
           },
           style: ElevatedButton.styleFrom(

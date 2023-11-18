@@ -1,83 +1,8 @@
-import 'package:pas_mobile_xi_2/app/models/item_model.dart';
+// import 'package:pas_mobile_xi_2/app/models/item_model.dart';
+// import 'package:get/get.dart';
 
-List<ItemModel> cartItems = [
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1001,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-  ItemModel(
-    productName: "MacBook Pro",
-    productImage: "https://i.dummyjson.com/data/products/6/1.png",
-    productPrice: 1000,
-  ),
-];
+// RxList<ItemModel> cartItems = <ItemModel>[].obs;
 
-addEvent(ItemModel cartitemmodel) {
-  cartItems.add(cartitemmodel);
-}
+// addEvent(ItemModel cartitemmodel) {
+//   cartItems.add(cartitemmodel);
+// }
