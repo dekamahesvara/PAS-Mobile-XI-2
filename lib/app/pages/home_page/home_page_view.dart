@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/home_page/widget/build_product_card.dart';
 import 'package:pas_mobile_xi_2/app/pages/home_page/widget/component.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:get/get.dart';
 
 class HomePageView extends StatelessWidget {
-  const HomePageView({Key? key}) : super(key: key);
+  HomePageView({Key? key}) : super(key: key);
+  final HomePageController controller = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,12 @@ class HomePageView extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: const TextField(
-                decoration: InputDecoration(
+              child: TextField(
+                onChanged: (searchQuery) {
+                  // Panggil metode pencarian saat teks berubah
+                  controller.loadDataBySearch(searchQuery);
+                },
+                decoration: const InputDecoration(
                   filled: true,
                   fillColor: box,
                   hintText: "Search",
@@ -58,21 +64,47 @@ class HomePageView extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(top: 15, left: 15, bottom: 10),
                 child: textblack("Categories")),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              height: 50,
-              child: Obx(
-                () => ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    buildCategoryButton("All", box, textWhite),
-                    buildCategoryButton("Smartphones", box, textGray),
-                    buildCategoryButton("Laptops", box, textGray),
-                    buildCategoryButton("Fragrances", box, textGray),
-                    buildCategoryButton("Groceries", box, textGray),
-                  ],
-                ),
-              ),
+            Obx(
+              () => controller.responseModel.value.products.isEmpty
+                  ? Container()
+                  : Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      height: 50,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: controller.responseCategoryModel.length + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          // Item pertama adalah tombol "All"
+                          if (index == 0) {
+                            return buildCategoryButton(
+                              "All",
+                              box,
+                              textGray,
+                              (categoryName) {
+                                controller.loadDataAll();
+                              },
+                            );
+                          } else {
+                            // Item kedua dan seterusnya adalah kategori lainnya
+                            String categoryName = controller
+                                .responseCategoryModel[index - 1]
+                                .toString();
+                            return buildCategoryButton(
+                              categoryName,
+                              box,
+                              textGray,
+                              (categoryName) {
+                                // Pastikan "All" tidak memicu pemanggilan API
+                                if (categoryName != "All") {
+                                  controller.loadDataByCategory(categoryName);
+                                }
+                              },
+                            );
+                          }
+                        },
+                      ),
+                    ),
             ),
             Container(
                 decoration: BoxDecoration(

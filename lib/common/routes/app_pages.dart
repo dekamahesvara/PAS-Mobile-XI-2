@@ -65,7 +65,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.homepage,
-      page: () => const HomePageView(),
+      page: () => HomePageView(),
       binding: HomePageBinding(),
     ),
     GetPage(
