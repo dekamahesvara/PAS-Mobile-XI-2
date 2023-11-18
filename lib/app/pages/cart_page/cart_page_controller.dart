@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pas_mobile_xi_2/app/models/item_model.dart';
+import 'package:pas_mobile_xi_2/app/models/cart_item_model.dart';
 
 class CartPageController extends GetxController {
-  RxList<ItemModel> cartItems = <ItemModel>[].obs;
+  RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   RxDouble totalCartPrice = 0.0.obs;
 
   final box = GetStorage();
@@ -12,16 +12,17 @@ class CartPageController extends GetxController {
   void onInit() {
     if (box.hasData('cartItems')) {
       final storedItems = box.read<List>('cartItems');
-      cartItems.assignAll(storedItems!.map((item) => ItemModel.fromJson(item)));
+      cartItems
+          .assignAll(storedItems!.map((item) => CartItemModel.fromJson(item)));
       updateTotalCartPrice();
     }
     super.onInit();
   }
 
-  void addEvent(ItemModel cartItemModel) {
+  void addEvent(CartItemModel cartItemModel) {
     var existingItem = cartItems.firstWhere(
       (item) => item.productName == cartItemModel.productName,
-      orElse: () => ItemModel(
+      orElse: () => CartItemModel(
         productName: cartItemModel.productName,
         productImage: cartItemModel.productImage,
         productPrice: cartItemModel.productPrice,
@@ -39,7 +40,7 @@ class CartPageController extends GetxController {
     saveCartItems();
   }
 
-  void updateQuantityInStorage(ItemModel item) {
+  void updateQuantityInStorage(CartItemModel item) {
     int index = cartItems
         .indexWhere((cartItem) => cartItem.productName == item.productName);
 

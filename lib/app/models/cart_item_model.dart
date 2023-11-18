@@ -1,20 +1,20 @@
 import 'package:get/get.dart';
 
-class ItemModel {
+class CartItemModel {
   String productName;
   String productImage;
   double productPrice;
   RxInt quantity;
 
-  ItemModel({
+  CartItemModel({
     required this.productName,
     required this.productImage,
     required this.productPrice,
     RxInt? quantity,
   }) : quantity = quantity ?? 1.obs;
 
-  factory ItemModel.fromJson(Map<String, dynamic> json) {
-    return ItemModel(
+  factory CartItemModel.fromJson(Map<String, dynamic> json) {
+    return CartItemModel(
       productName: json['productName'],
       productImage: json['productImage'],
       productPrice: (json['productPrice'] as num).toDouble(),

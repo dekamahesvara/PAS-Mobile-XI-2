@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/models/item_model.dart';
+import 'package:pas_mobile_xi_2/app/models/cart_item_model.dart';
+import 'package:pas_mobile_xi_2/app/models/wishlist_item_model.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
+import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/description.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/image_slideshow.dart';
@@ -14,9 +16,11 @@ import 'package:get/get.dart';
 
 class DetailPage extends GetView<DetailPageController> {
   DetailPage({Key? key}) : super(key: key);
-  final DetailPageController homePageController =
+  final DetailPageController detailPageController =
       Get.put(DetailPageController());
   final CartPageController cartPageController = Get.put(CartPageController());
+  final WishlistPageController wishlistPageController =
+      Get.put(WishlistPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +70,19 @@ class DetailPage extends GetView<DetailPageController> {
       child: CircleAvatar(
         backgroundColor: primary,
         child: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.favorite,
-            color: white,
-          ),
+          onPressed: () {
+            wishlistPageController.addEvent(WishlistItemModel(
+              productName: controller.data.value.title,
+              productImage: controller.data.value.thumbnail,
+              productPrice:
+                  double.parse(controller.data.value.price.toString()),
+              productRating:
+                  double.parse(controller.data.value.rating.toString()),
+            ));
+
+            Get.toNamed('/wishlist');
+          },
+          icon: const Icon(Icons.favorite, color: white),
         ),
       ),
     );
@@ -85,7 +97,7 @@ class DetailPage extends GetView<DetailPageController> {
         ),
         child: ElevatedButton(
           onPressed: () {
-            cartPageController.addEvent(ItemModel(
+            cartPageController.addEvent(CartItemModel(
               productName: controller.data.value.title,
               productImage: controller.data.value.thumbnail,
               productPrice:
