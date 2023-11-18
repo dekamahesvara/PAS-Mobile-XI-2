@@ -34,7 +34,7 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.profilpage;
+  static const initial = Routes.splashscreenpage;
 
   static final routes = [
     GetPage(
