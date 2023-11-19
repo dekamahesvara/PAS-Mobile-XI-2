@@ -30,6 +30,7 @@ class PaymentComponent extends StatelessWidget {
                   payment[0].name;
               Get.find<CartPageController>().selectedPaymentMethodImage.value =
                   payment[0].image;
+              Get.back();
             },
           ),
           const Divider(
@@ -45,6 +46,7 @@ class PaymentComponent extends StatelessWidget {
                   payment[1].name;
               Get.find<CartPageController>().selectedPaymentMethodImage.value =
                   payment[1].image;
+              Get.back();
             },
           ),
           const Divider(
@@ -60,6 +62,7 @@ class PaymentComponent extends StatelessWidget {
                   payment[2].name;
               Get.find<CartPageController>().selectedPaymentMethodImage.value =
                   payment[2].image;
+              Get.back();
             },
           ),
           const Divider(
@@ -75,6 +78,7 @@ class PaymentComponent extends StatelessWidget {
                   payment[3].name;
               Get.find<CartPageController>().selectedPaymentMethodImage.value =
                   payment[3].image;
+              Get.back();
             },
           ),
           const Divider(
@@ -90,6 +94,7 @@ class PaymentComponent extends StatelessWidget {
                   payment[4].name;
               Get.find<CartPageController>().selectedPaymentMethodImage.value =
                   payment[4].image;
+              Get.back();
             },
           ),
           const Divider(

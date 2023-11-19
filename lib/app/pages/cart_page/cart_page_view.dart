@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/data/cart_data.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
@@ -13,15 +12,11 @@ class CartPageView extends GetView<CartPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
-          title: Text(
-            'Cart',
-            style: textBlack600,
+          title: Center(
+            child: Text(
+              'Cart',
+              style: textBlack600,
+            ),
           ),
         ),
         body: Column(
@@ -93,26 +88,26 @@ class CartPageView extends GetView<CartPageController> {
                     ],
                   ),
                   Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Obx(
-                          () => Image.asset(
-                            controller.selectedPaymentMethodImage.value,
-                            height: 50,
+                    margin: const EdgeInsets.only(bottom: 5),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Obx(
+                            () => Image.asset(
+                              controller.selectedPaymentMethodImage.value,
+                              height: 50,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 15),
-                      Obx(
-                        () =>  Text(controller.selectedPaymentMethodName.value,
-                            style: textBlack500),
-                      ),
-                    ],
+                        const SizedBox(width: 15),
+                        Obx(
+                          () => Text(controller.selectedPaymentMethodName.value,
+                              style: textBlack500),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -179,7 +174,7 @@ Expanded checkOutButton(controller) {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            "CheckOut",
+            "Checkout",
             style: textWhite500,
             textAlign: TextAlign.center,
           ),

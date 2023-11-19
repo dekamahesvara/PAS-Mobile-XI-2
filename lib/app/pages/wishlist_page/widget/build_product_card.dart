@@ -84,10 +84,7 @@ class BuildProductCard extends GetView<WishlistPageController> {
                     ],
                   ),
                   IconButton(
-                    icon: const Icon(
-                      Icons.remove_circle,
-                      color: red,
-                    ),
+                    icon: const Icon(Icons.delete),
                     onPressed: () {
                       controller.removeItem(name);
                     },

@@ -37,7 +37,6 @@ class HomePageView extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: TextField(
                 onChanged: (searchQuery) {
-                  // Panggil metode pencarian saat teks berubah
                   controller.loadDataBySearch(searchQuery);
                 },
                 decoration: const InputDecoration(
@@ -75,7 +74,6 @@ class HomePageView extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         itemCount: controller.responseCategoryModel.length + 1,
                         itemBuilder: (BuildContext context, int index) {
-                          // Item pertama adalah tombol "All"
                           if (index == 0) {
                             return buildCategoryButton(
                               "All",
@@ -86,7 +84,6 @@ class HomePageView extends StatelessWidget {
                               },
                             );
                           } else {
-                            // Item kedua dan seterusnya adalah kategori lainnya
                             String categoryName = controller
                                 .responseCategoryModel[index - 1]
                                 .toString();
@@ -95,7 +92,6 @@ class HomePageView extends StatelessWidget {
                               box,
                               textGray,
                               (categoryName) {
-                                // Pastikan "All" tidak memicu pemanggilan API
                                 if (categoryName != "All") {
                                   controller.loadDataByCategory(categoryName);
                                 }

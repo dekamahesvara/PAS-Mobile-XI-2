@@ -21,15 +21,7 @@ class WishlistPageController extends GetxController {
   }
 
   void addEvent(WishlistItemModel wishlistModel) {
-    var existingItemIndex = wishlistItems.indexWhere(
-      (item) => item.productName == wishlistModel.productName,
-    );
-
-    if (existingItemIndex != -1) {
-      wishlistItems.removeAt(existingItemIndex);
-    } else {
-      wishlistItems.add(wishlistModel);
-    }
+    wishlistItems.add(wishlistModel);
 
     update();
     saveWishlistItems();

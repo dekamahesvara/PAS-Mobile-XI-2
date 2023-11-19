@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/navbar_page/navbar_page_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/navbar_page/navbar_page_view.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_view.dart';
 
@@ -35,9 +36,14 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.homepage;
+  static const initial = Routes.navbar;
 
   static final routes = [
+    GetPage(
+      name: Routes.navbar,
+      page: () => const NavbarPageView(),
+      binding: NavbarPageBinding(),
+    ),
     GetPage(
       name: Routes.splashscreenpage,
       page: () => SplashScreenPageView(),
@@ -75,7 +81,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.cartpage,
-      page: () => CartPageView(),
+      page: () => const CartPageView(),
       binding: CartPageBinding(),
     ),
     GetPage(

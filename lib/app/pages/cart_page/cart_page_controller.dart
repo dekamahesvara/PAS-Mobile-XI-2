@@ -4,9 +4,9 @@ import 'package:pas_mobile_xi_2/app/models/cart_item_model.dart';
 
 class CartPageController extends GetxController {
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
-  RxDouble totalCartPrice = 0.0.obs;
-    RxString selectedPaymentMethodName = "GoPay".obs;
-    RxString selectedPaymentMethodImage = "assets/payment/gopay.png".obs;
+  RxInt totalCartPrice = 0.obs;
+  RxString selectedPaymentMethodName = "GoPay".obs;
+  RxString selectedPaymentMethodImage = "assets/payment/gopay.png".obs;
 
   final box = GetStorage();
 
@@ -64,7 +64,7 @@ class CartPageController extends GetxController {
   }
 
   void updateTotalCartPrice() {
-    totalCartPrice.value = calculateTotalCartPrice();
+    totalCartPrice.value = calculateTotalCartPrice() as int;
     update();
   }
 
@@ -72,11 +72,11 @@ class CartPageController extends GetxController {
     box.write('cartItems', cartItems.map((item) => item.toJson()).toList());
   }
 
-    void updatePaymentMethodName(String method) {
-      selectedPaymentMethodName.value = method;
-    }
+  void updatePaymentMethodName(String method) {
+    selectedPaymentMethodName.value = method;
+  }
 
-    void updatePaymentMethodImage(String method) {
-      selectedPaymentMethodName.value = method;
-    }
+  void updatePaymentMethodImage(String method) {
+    selectedPaymentMethodName.value = method;
+  }
 }

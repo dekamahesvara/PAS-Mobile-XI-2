@@ -3,23 +3,20 @@ import 'package:get/get.dart';
 import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/profile_page/widget/build_list_tile.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
   const ProfilePageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double containerHeight = MediaQuery.of(context).size.height * 0.1;
-    double containerWidth = MediaQuery.of(context).size.width * 0.2;
-
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
+        title: Center(
+            child: Text(
+          'Profile',
+          style: textBlack600,
+        )),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,18 +25,20 @@ class ProfilePageView extends GetView<ProfilePageController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 6.0,
-                    horizontal: 16.0,
-                  ),
-                  width: containerWidth,
-                  height: containerHeight,
-                  color: Colors.white,
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/image_sample.png',
-                      fit: BoxFit.cover,
+                SizedBox(
+                  height: 100,
+                  width: double.infinity,
+                  child: Center(
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.asset(
+                          'assets/image_sample.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -107,8 +106,10 @@ class ProfilePageView extends GetView<ProfilePageController> {
             padding: const EdgeInsets.all(16.0),
             child: buildListTile(
               icon: Icons.logout,
-              text: 'Log Out',
-              onPressed: () {},
+              text: 'Sign Out',
+              onPressed: () {
+                controller.clearToken();
+              },
               iconColor: red,
               textColor: red,
             ),

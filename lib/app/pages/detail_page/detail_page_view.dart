@@ -54,12 +54,14 @@ class DetailPage extends GetView<DetailPageController> {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
-              floatingActionButton:
-                  Row(children: [addToCartButton(), addToWishlistButton()]));
+              floatingActionButton: Row(children: [
+                addToCartButton(context),
+                addToWishlistButton(context)
+              ]));
     });
   }
 
-  Container addToWishlistButton() {
+  Container addToWishlistButton(context) {
     return Container(
       margin: const EdgeInsets.only(right: 15, left: 5),
       height: 60,
@@ -79,8 +81,8 @@ class DetailPage extends GetView<DetailPageController> {
               productRating:
                   double.parse(controller.data.value.rating.toString()),
             ));
-
-            Get.toNamed('/wishlist');
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Added To Wishlist')));
           },
           icon: const Icon(Icons.favorite, color: white),
         ),
@@ -88,7 +90,7 @@ class DetailPage extends GetView<DetailPageController> {
     );
   }
 
-  Expanded addToCartButton() {
+  Expanded addToCartButton(context) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.only(left: 15, right: 5),
@@ -104,7 +106,8 @@ class DetailPage extends GetView<DetailPageController> {
                   double.parse(controller.data.value.price.toString()),
             ));
             cartPageController.calculateTotalCartPrice();
-            Get.toNamed('/cart');
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Added To Cart')));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: primary,

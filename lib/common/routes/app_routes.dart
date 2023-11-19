@@ -1,5 +1,6 @@
 abstract class Routes {
   Routes._();
+  static const navbar = '/navbar';
   static const splashscreenpage = '/splash';
   static const getstartedpage = '/getstarted';
   static const signinpage = '/signin';
@@ -11,5 +12,4 @@ abstract class Routes {
   static const paymentpage = '/payment';
   static const detailpage = '/detail';
   static const profilpage = '/profil';
-
 }

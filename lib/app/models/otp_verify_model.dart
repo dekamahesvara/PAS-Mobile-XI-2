@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final otpVerifyModel = otpVerifyModelFromJson(jsonString);
-
 import 'dart:convert';
 
 OtpVerifyModel otpVerifyModelFromJson(String str) =>

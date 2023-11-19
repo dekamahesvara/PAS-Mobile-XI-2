@@ -46,7 +46,7 @@ class HomePageController extends GetxController {
 
   loadDataByCategory(String categoryName) async {
     try {
-      isLoading.value = true; // Mulai loading
+      isLoading.value = true;
 
       final response = await http.get(
           Uri.parse('https://dummyjson.com/products/category/$categoryName'));
@@ -59,13 +59,13 @@ class HomePageController extends GetxController {
     } catch (e) {
       print("error: $e");
     } finally {
-      isLoading.value = false; // Selesai loading
+      isLoading.value = false;
     }
   }
 
   loadDataBySearch(String searchQuery) async {
     try {
-      isLoading.value = true; // Start loading
+      isLoading.value = true;
 
       final response = await http.get(Uri.parse(
           'https://dummyjson.com/products/search?q=$searchQuery&limit=100'));

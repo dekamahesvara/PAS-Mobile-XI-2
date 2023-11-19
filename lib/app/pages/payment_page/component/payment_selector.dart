@@ -20,40 +20,31 @@ class PaymentSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => InkWell(
-        onTap: () {
-          controller.setOrderType(value.value);
-          onTap(); // Call the provided onTap callback
-        },
-        child: Container(
-          padding: EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: box,
-          ),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  image,
-                  height: 50,
-                ),
+    return InkWell(
+      onTap: () {
+        controller.setOrderType(value.value);
+        onTap();
+      },
+      child: Container(
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: box,
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                image,
+                height: 50,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(name, style: textBlack600),
-              ),
-              const Spacer(),
-              Radio(
-                value: value.value,
-                groupValue: controller.orderType.value,
-                activeColor: primary,
-                onChanged: (val) {},
-              ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(name, style: textBlack600),
+            ),
+          ],
         ),
       ),
     );

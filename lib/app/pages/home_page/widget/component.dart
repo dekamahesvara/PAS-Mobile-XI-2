@@ -22,8 +22,8 @@ Widget textgray(String text) {
   );
 }
 
-Widget buildCategoryButton(
-    String categoryName, Color colorbutton, Color colortext, Null Function(dynamic categoryName) param3) {
+Widget buildCategoryButton(String categoryName, Color colorbutton,
+    Color colortext, Null Function(dynamic categoryName) param3) {
   HomePageController controller = Get.find<HomePageController>();
 
   return Container(
