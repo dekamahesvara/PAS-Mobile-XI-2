@@ -27,7 +27,7 @@ class NavbarPageView extends StatelessWidget {
                   const Center(
                     child: CartPageView(),
                   ),
-                  const Center(
+                  Center(
                     child: ProfilePageView(),
                   ),
                 ],

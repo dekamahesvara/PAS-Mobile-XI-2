@@ -91,12 +91,12 @@ class AppPages {
     ),
     GetPage(
       name: Routes.paymentpage,
-      page: () => PaymentPageView(),
+      page: () => const PaymentPageView(),
       binding: PaymentPageBinding(),
     ),
     GetPage(
       name: Routes.profilpage,
-      page: () => const ProfilePageView(),
+      page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
     ),
   ];

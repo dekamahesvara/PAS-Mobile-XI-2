@@ -6,7 +6,9 @@ import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  const ProfilePageView({Key? key}) : super(key: key);
+  ProfilePageView({Key? key}) : super(key: key);
+  final ProfilePageController profilePageController =
+      Get.put(ProfilePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +110,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
               icon: Icons.logout,
               text: 'Sign Out',
               onPressed: () {
-                controller.clearToken();
+                profilePageController.clearToken();
               },
               iconColor: red,
               textColor: red,
