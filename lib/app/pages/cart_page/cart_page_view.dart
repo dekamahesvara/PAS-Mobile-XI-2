@@ -5,11 +5,12 @@ import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
-class CartPageView extends GetView<CartPageController> {
+class CartPageView extends StatelessWidget {
   const CartPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final CartPageController controller = Get.put(CartPageController());
     return Scaffold(
         appBar: AppBar(
           title: Center(

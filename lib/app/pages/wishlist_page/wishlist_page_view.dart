@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/widget/build_product_card.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_controller.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
-class WishlistPageView extends GetView<WishlistPageController> {
+class WishlistPageView extends StatelessWidget {
   const WishlistPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WishlistPageController controller = Get.put(WishlistPageController());
     final Size mediaQuery = MediaQuery.of(context).size;
     final double height = mediaQuery.height;
 

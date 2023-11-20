@@ -5,9 +5,8 @@ import 'package:pas_mobile_xi_2/app/pages/home_page/widget/component.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:get/get.dart';
 
-class HomePageView extends StatelessWidget {
-  HomePageView({Key? key}) : super(key: key);
-  final HomePageController controller = Get.put(HomePageController());
+class HomePageView extends GetView<HomePageController> {
+  const HomePageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +23,19 @@ class HomePageView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  textHeading(
-                    "Hello",
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      textHeading(
+                        "Hello",
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child: textHeading(
+                          controller.username,
+                        ),
+                      ),
+                    ],
                   ),
                   textgray(
                     "Welcome to Thrivee",
@@ -91,11 +101,7 @@ class HomePageView extends StatelessWidget {
                               categoryName,
                               box,
                               textGray,
-                              (categoryName) {
-                                if (categoryName != "All") {
-                                  controller.loadDataByCategory(categoryName);
-                                }
-                              },
+                              (categoryName) {},
                             );
                           }
                         },
@@ -115,9 +121,6 @@ class HomePageView extends StatelessWidget {
                   ),
                 ),
                 child: BuildProductCardHome()),
-            const SizedBox(
-              height: 80,
-            )
           ],
         ),
       ),

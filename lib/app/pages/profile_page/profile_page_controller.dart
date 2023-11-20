@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class ProfilePageController extends GetxController {
   late final SharedPreferences prefs;
+  late String username = '';
   @override
   void onInit() {
     super.onInit();
@@ -12,6 +13,7 @@ class ProfilePageController extends GetxController {
   loadData() async {
     prefs = await SharedPreferences.getInstance();
     prefs.getString('token');
+    username = prefs.getString('username') ?? '';
   }
 
   void clearToken() async {

@@ -44,14 +44,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(
+                Padding(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 6.0,
                     horizontal: 16.0,
                   ),
                   child: Text(
-                    'Your Username',
-                    style: TextStyle(
+                    controller.username,
+                    style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                       color: black,

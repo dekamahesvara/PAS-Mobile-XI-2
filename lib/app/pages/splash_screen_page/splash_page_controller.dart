@@ -16,7 +16,7 @@ class SplashScreenPageController extends GetxController {
     prefs.getString('token');
 
     if (prefs.getString('token') != null && prefs.getString('token') != "") {
-      Get.offNamed("/home");
+      Get.offNamed("/navbar");
     } else {
       Get.offNamed("/getstarted");
     }

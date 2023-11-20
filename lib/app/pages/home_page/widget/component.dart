@@ -31,6 +31,11 @@ Widget buildCategoryButton(String categoryName, Color colorbutton,
     child: ElevatedButton(
       onPressed: () {
         controller.selectCategory(categoryName);
+        if (categoryName != "All") {
+          controller.loadDataByCategory(categoryName);
+        } else {
+          controller.loadDataAll();
+        }
       },
       style: ElevatedButton.styleFrom(
         backgroundColor:

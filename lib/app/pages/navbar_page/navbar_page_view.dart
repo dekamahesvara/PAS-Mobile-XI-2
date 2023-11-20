@@ -4,8 +4,10 @@ import 'package:pas_mobile_xi_2/app/pages/home_page/home_page_view.dart';
 import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_view.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_view.dart';
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
+import 'package:pas_mobile_xi_2/app/pages/navbar_page/navbar_page_controller.dart';
+import 'package:get/get.dart';
 
-class NavbarPageView extends StatelessWidget {
+class NavbarPageView extends GetView<NavbarPageController> {
   const NavbarPageView({super.key});
 
   @override
@@ -18,7 +20,7 @@ class NavbarPageView extends StatelessWidget {
             Flexible(
               child: TabBarView(
                 children: <Widget>[
-                  Center(
+                  const Center(
                     child: HomePageView(),
                   ),
                   const Center(

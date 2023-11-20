@@ -7,10 +7,15 @@ import 'dart:convert';
 
 class SignInPageController extends GetxController {
   Rx<SignInModel> loginModel = SignInModel(
-    message: '',
-    status: 0,
-    token: '',
-  ).obs;
+      message: '',
+      status: 0,
+      token: '',
+      user: User(
+        id: 0,
+        username: '',
+        email: '',
+        password: '',
+      )).obs;
 
   signIn(String email, String password) async {
     try {
@@ -26,7 +31,8 @@ class SignInPageController extends GetxController {
         loginModel.value = signInModelFromJson(response.body);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', loginModel.value.token);
-        Get.offAllNamed("/home");
+        prefs.setString('username', loginModel.value.user.username);
+        Get.offAllNamed("/navbar");
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }

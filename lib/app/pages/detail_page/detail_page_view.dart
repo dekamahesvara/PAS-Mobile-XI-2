@@ -16,8 +16,6 @@ import 'package:get/get.dart';
 
 class DetailPage extends GetView<DetailPageController> {
   DetailPage({Key? key}) : super(key: key);
-  final DetailPageController detailPageController =
-      Get.put(DetailPageController());
   final CartPageController cartPageController = Get.put(CartPageController());
   final WishlistPageController wishlistPageController =
       Get.put(WishlistPageController());
