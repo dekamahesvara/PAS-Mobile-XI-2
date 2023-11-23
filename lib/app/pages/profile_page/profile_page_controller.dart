@@ -13,7 +13,7 @@ class ProfilePageController extends GetxController {
   loadData() async {
     prefs = await SharedPreferences.getInstance();
     prefs.getString('token');
-    username = prefs.getString('username') ?? '';
+    username = prefs.getString('username') ?? 'deka';
   }
 
   void clearToken() async {

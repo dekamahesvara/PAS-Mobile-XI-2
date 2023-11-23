@@ -41,20 +41,17 @@ Widget buildCategoryButton(String categoryName, Color colorbutton,
         backgroundColor:
             categoryName == controller.selectedCategory.value ? primary : box,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(6),
-        child: Text(
-          categoryName,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: categoryName == controller.selectedCategory.value
-                ? colorbutton
-                : textGray,
-          ),
+      child: Text(
+        categoryName,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: categoryName == controller.selectedCategory.value
+              ? colorbutton
+              : textGray,
         ),
       ),
     ),

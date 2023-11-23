@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pas_mobile_xi_2/app/models/cart_item_model.dart';
 import 'package:pas_mobile_xi_2/app/models/wishlist_item_model.dart';
-import 'package:pas_mobile_xi_2/app/pages/cart_page/cart_page_controller.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/modal.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/description.dart';
@@ -16,16 +15,14 @@ import 'package:get/get.dart';
 
 class DetailPage extends GetView<DetailPageController> {
   DetailPage({Key? key}) : super(key: key);
-  final CartPageController cartPageController = Get.put(CartPageController());
   final WishlistPageController wishlistPageController =
       Get.put(WishlistPageController());
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return controller.data.value.images.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : Scaffold(
+      return controller.load.value
+          ? Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   onPressed: () {
@@ -55,7 +52,8 @@ class DetailPage extends GetView<DetailPageController> {
               floatingActionButton: Row(children: [
                 addToCartButton(context),
                 addToWishlistButton(context)
-              ]));
+              ]))
+          : const Center(child: CircularProgressIndicator());
     });
   }
 
@@ -79,10 +77,15 @@ class DetailPage extends GetView<DetailPageController> {
               productRating:
                   double.parse(controller.data.value.rating.toString()),
             ));
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Added To Wishlist')));
+            controller.checkLiked();
+            wishlistPageController.saveWishlistItems();
           },
-          icon: const Icon(Icons.favorite, color: white),
+          icon: Obx(() {
+            return Icon(
+              Icons.favorite,
+              color: controller.liked.value ? red : white,
+            );
+          }),
         ),
       ),
     );
@@ -97,15 +100,15 @@ class DetailPage extends GetView<DetailPageController> {
         ),
         child: ElevatedButton(
           onPressed: () {
-            cartPageController.addEvent(CartItemModel(
-              productName: controller.data.value.title,
-              productImage: controller.data.value.thumbnail,
-              productPrice:
-                  double.parse(controller.data.value.price.toString()),
-            ));
-            cartPageController.calculateTotalCartPrice();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Added To Cart')));
+            showModalBottomSheet(
+              backgroundColor: white,
+              context: context,
+              builder: (BuildContext context) {
+                return ShowModalComponent(
+                  context: context,
+                );
+              },
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: primary,

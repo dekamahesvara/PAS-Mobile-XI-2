@@ -4,13 +4,13 @@ import 'package:pas_mobile_xi_2/app/pages/cart_page/widget/cart_item_container.d
 import 'package:pas_mobile_xi_2/common/theme/color_theme.dart';
 import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
-class CartPageView extends StatelessWidget {
+class CartPageView extends GetView<CartPageController> {
   const CartPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CartPageController controller = Get.put(CartPageController());
     return Scaffold(
         appBar: AppBar(
           title: Center(
@@ -39,17 +39,35 @@ class CartPageView extends StatelessWidget {
                   ],
                 ),
                 child: Obx(() {
-                  return ListView.builder(
-                    itemCount: controller.cartItems.length,
-                    itemBuilder: (context, index) {
-                      return CartItemContainer(
-                        image: controller.cartItems[index].productImage,
-                        name: controller.cartItems[index].productName,
-                        price: controller.cartItems[index].productPrice.toInt(),
-                        index: index,
-                      );
-                    },
-                  );
+                  if (controller.cartItems.isEmpty) {
+                    return Center(
+                      child: Column(children: [
+                        Lottie.asset(
+                          'assets/lottie/empty.json',
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.fill,
+                        ),
+                        Text(
+                          "Oops, you haven't added anything to cart yet..",
+                          style: textBlack500,
+                        ),
+                      ]),
+                    );
+                  } else {
+                    return ListView.builder(
+                      itemCount: controller.cartItems.length,
+                      itemBuilder: (context, index) {
+                        return CartItemContainer(
+                          image: controller.cartItems[index].productImage,
+                          name: controller.cartItems[index].productName,
+                          price:
+                              controller.cartItems[index].productPrice.toInt(),
+                          index: index,
+                        );
+                      },
+                    );
+                  }
                 }),
               ),
             ),
@@ -92,12 +110,12 @@ class CartPageView extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5),
                     child: Row(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Obx(
-                            () => Image.asset(
+                        Obx(
+                          () => ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
                               controller.selectedPaymentMethodImage.value,
-                              height: 50,
+                              scale: 1.5,
                             ),
                           ),
                         ),

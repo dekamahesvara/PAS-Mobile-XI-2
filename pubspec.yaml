@@ -55,6 +55,7 @@ dev_dependencies:
   http:
   shared_preferences:
   get_storage:
+  lottie:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,7 +72,8 @@ flutter:
     - assets/
     - assets/payment/
     - assets/svg/
-    - assets/image_sample.png
+    - assets/lottie/
+  #   - assets/image_sample.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

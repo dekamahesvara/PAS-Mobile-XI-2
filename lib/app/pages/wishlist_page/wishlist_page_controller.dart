@@ -21,10 +21,16 @@ class WishlistPageController extends GetxController {
   }
 
   void addEvent(WishlistItemModel wishlistModel) {
-    wishlistItems.add(wishlistModel);
+    bool alreadyExists = wishlistItems
+        .any((item) => item.productName == wishlistModel.productName);
 
-    update();
-    saveWishlistItems();
+    if (!alreadyExists) {
+      wishlistItems.add(wishlistModel);
+      update();
+      saveWishlistItems();
+    } else {
+      removeItem(wishlistModel.productName);
+    }
   }
 
   void removeItem(String productName) {
@@ -42,5 +48,9 @@ class WishlistPageController extends GetxController {
   void saveWishlistItems() {
     box.write(
         'wishlistItems', wishlistItems.map((item) => item.toJson()).toList());
+  }
+
+  List<String> getProductTitles() {
+    return wishlistItems.map((item) => item.productName).toList();
   }
 }

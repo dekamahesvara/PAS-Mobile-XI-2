@@ -37,7 +37,7 @@ class PaymentSelector extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
                 image,
-                height: 50,
+                scale: 1.7,
               ),
             ),
             Padding(

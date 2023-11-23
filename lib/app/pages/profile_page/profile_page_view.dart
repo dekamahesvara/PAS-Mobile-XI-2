@@ -23,44 +23,6 @@ class ProfilePageView extends GetView<ProfilePageController> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: double.infinity,
-                  child: Center(
-                    child: SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.asset(
-                          'assets/image_sample.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 6.0,
-                    horizontal: 16.0,
-                  ),
-                  child: Text(
-                    controller.username,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           buildListTile(
             icon: Icons.info,
             text: 'Account Information',

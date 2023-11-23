@@ -7,6 +7,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomePageController extends GetxController {
   late final SharedPreferences prefs;
   late String username = '';
+  RxBool successLoadAll = false.obs;
+  RxBool successLoadSearch = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadDataAll();
+    loadData();
+  }
 
   loadData() async {
     prefs = await SharedPreferences.getInstance();
@@ -22,19 +31,9 @@ class HomePageController extends GetxController {
 
   RxList<dynamic> responseCategoryModel = <dynamic>[].obs;
 
-  RxBool isLoading = false.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadDataAll();
-    loadData();
-  }
-
   loadDataAll() async {
     try {
-      isLoading.value = true;
-
+      successLoadAll.value = false;
       final response =
           await http.get(Uri.parse('https://dummyjson.com/products?limit=100'));
       final responseCategory = await http
@@ -43,20 +42,18 @@ class HomePageController extends GetxController {
       if (response.statusCode == 200) {
         responseModel.value = responseModelFromJson(response.body);
         responseCategoryModel.value = json.decode(responseCategory.body);
+        successLoadAll.value = true;
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }
     } catch (e) {
       print("error: $e");
-    } finally {
-      isLoading.value = false;
     }
   }
 
   loadDataByCategory(String categoryName) async {
     try {
-      isLoading.value = true;
-
+      successLoadAll.value = false;
       final response = await http.get(
           Uri.parse('https://dummyjson.com/products/category/$categoryName'));
       print("Load data by category: $categoryName");
@@ -64,32 +61,30 @@ class HomePageController extends GetxController {
       if (response.statusCode == 200) {
         responseModel.value = responseModelFromJson(response.body);
         print("Load data by category: $categoryName TRUE");
+        successLoadAll.value = true;
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }
     } catch (e) {
       print("error: $e");
-    } finally {
-      isLoading.value = false;
     }
   }
 
   loadDataBySearch(String searchQuery) async {
     try {
-      isLoading.value = true;
+      successLoadSearch.value = false;
 
       final response = await http.get(
           Uri.parse('https://dummyjson.com/products/search?q=$searchQuery'));
 
       if (response.statusCode == 200) {
         responseModel.value = responseModelFromJson(response.body);
+        successLoadSearch.value = true;
       } else {
         print('Search request failed with status: ${response.statusCode}.');
       }
     } catch (e) {
       print("Error during search: $e");
-    } finally {
-      isLoading.value = false;
     }
   }
 

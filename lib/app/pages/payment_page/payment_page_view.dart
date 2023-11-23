@@ -10,6 +10,7 @@ class PaymentPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: white,
         title: Center(
           child: Text(
