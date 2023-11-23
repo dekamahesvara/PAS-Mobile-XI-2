@@ -11,7 +11,10 @@ import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
 class SignUpPageView extends GetView<SignUpPageController> {
-  const SignUpPageView({super.key});
+  SignUpPageView({super.key});
+  final formKey = GlobalKey<FormState>();
+  final SignUpPageController signUpPageController =
+      Get.put(SignUpPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +39,22 @@ class SignUpPageView extends GetView<SignUpPageController> {
                 ),
               ),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    iconApp(width: width, height: height),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    whiteContainer(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    signUpButton(),
-                  ],
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconApp(width: width, height: height),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      whiteContainer(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      signUpButton(context, formKey),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -79,13 +85,17 @@ class SignUpPageView extends GetView<SignUpPageController> {
           Column(
             children: [
               TextFieldSignUp(
-                  text: "Username", controller: controller.usernameController),
-              const SizedBox(height: 20),
+                text: "Username",
+                controller: controller.usernameController,
+              ),
+              const SizedBox(height: 10),
               TextFieldSignUp(
-                  text: "Email", controller: controller.emailController),
-              const SizedBox(height: 20),
-              const TextFieldObx(),
-              const SizedBox(height: 50),
+                text: "Email",
+                controller: controller.emailController,
+              ),
+              const SizedBox(height: 10),
+              TextFieldObx(passwordController: controller.passwordController),
+              const SizedBox(height: 40),
               const textButton(),
             ],
           ),
@@ -94,12 +104,19 @@ class SignUpPageView extends GetView<SignUpPageController> {
     );
   }
 
-  Container signUpButton() {
+  Container signUpButton(BuildContext context, GlobalKey<FormState> formKey) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
           onPressed: () {
-            Get.offAllNamed('/cart');
+            if (formKey.currentState!.validate()) {
+              controller.emailVerify(
+                  context,
+                  controller.usernameController.text,
+                  controller.emailController.text,
+                  controller.passwordController.text);
+              FocusScope.of(context).unfocus();
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: white,

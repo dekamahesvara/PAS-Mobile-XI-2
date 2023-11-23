@@ -12,7 +12,10 @@ import 'package:pas_mobile_xi_2/common/theme/text_theme.dart';
 import 'package:get/get.dart';
 
 class SignInPageView extends GetView<SignInPageController> {
-  const SignInPageView({super.key});
+  SignInPageView({super.key});
+  final formKey = GlobalKey<FormState>();
+  final SignInPageController signInPageController =
+      Get.put(SignInPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +40,22 @@ class SignInPageView extends GetView<SignInPageController> {
                 ),
               ),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    iconApp(width: width, height: height),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    whiteContainer(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    signInButton(),
-                  ],
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconApp(width: width, height: height),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      whiteContainer(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      signInButton(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -80,11 +86,12 @@ class SignInPageView extends GetView<SignInPageController> {
           Column(
             children: [
               TextFieldSignin(
-                  text: "Username", controller: controller.usernameController),
-              const SizedBox(height: 20),
+                  text: "Email", controller: controller.emailController),
+              const SizedBox(height: 10),
               const TextFieldObx(),
+              const SizedBox(height: 5),
               const BtnForgetPass(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               const TextButtonSignUp(),
             ],
           ),
@@ -97,8 +104,11 @@ class SignInPageView extends GetView<SignInPageController> {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton(
-          onPressed: () {
-            Get.offAllNamed('/cart');
+          onPressed: () async {
+            if (formKey.currentState!.validate()) {
+              controller.signIn(controller.emailController.text,
+                  controller.passwordController.text);
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: white,

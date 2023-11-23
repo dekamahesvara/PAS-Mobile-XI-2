@@ -1,10 +1,49 @@
-import 'package:get/get.dart';
+import 'package:pas_mobile_xi_2/app/models/sign_in_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'dart:convert';
 
 class SignInPageController extends GetxController {
+  Rx<SignInModel> loginModel = SignInModel(
+      message: '',
+      status: 0,
+      token: '',
+      user: User(
+        id: 0,
+        username: '',
+        email: '',
+        password: '',
+      )).obs;
+
+  signIn(String email, String password) async {
+    try {
+      final response = await http.post(
+          Uri.parse(
+              'https://jellyfish-app-wmftv.ondigitalocean.app/api/v1/login'),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: jsonEncode({"email": email, "password": password}));
+
+      if (response.statusCode == 200) {
+        loginModel.value = signInModelFromJson(response.body);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('token', loginModel.value.token);
+        prefs.setString('username', loginModel.value.user.username);
+        Get.offAllNamed("/navbar");
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print("error: $e");
+    }
+  }
+
   var isObsecure = true.obs;
 
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   toggleTextVisibility() {

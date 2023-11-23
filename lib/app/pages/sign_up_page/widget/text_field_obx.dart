@@ -6,16 +6,37 @@ import 'package:get/get.dart';
 class TextFieldObx extends GetView<SignUpPageController> {
   const TextFieldObx({
     super.key,
+    required this.passwordController,
   });
+
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        child: Obx(() => TextField(
-              controller: controller.passwordController,
+        child: Obx(() => TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'You need to fill this field';
+                }
+
+                if (value.length < 8) {
+                  return 'Password must be at least 8 characters';
+                }
+
+                if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$')
+                    .hasMatch(value)) {
+                  return 'Password requires lowercase, uppercase, and a number';
+                }
+
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: passwordController,
               obscureText: controller.isObsecure.value,
               decoration: InputDecoration(
+                alignLabelWithHint: true,
                 suffixIcon: IconButton(
                   icon: Icon(
                     controller.isObsecure.value
@@ -28,9 +49,6 @@ class TextFieldObx extends GetView<SignUpPageController> {
                   },
                 ),
                 labelText: 'Password',
-                filled: true,
-                fillColor: Colors.transparent,
-                alignLabelWithHint: true,
                 labelStyle: const TextStyle(color: gray),
                 floatingLabelStyle: const TextStyle(color: black),
                 enabledBorder: const UnderlineInputBorder(
@@ -38,6 +56,12 @@ class TextFieldObx extends GetView<SignUpPageController> {
                 ),
                 focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: black),
+                ),
+                errorBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: red),
+                ),
+                focusedErrorBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: red),
                 ),
               ),
             )));

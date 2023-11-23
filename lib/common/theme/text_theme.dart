@@ -8,6 +8,13 @@ TextStyle heading = const TextStyle(
   fontSize: 28,
 );
 
+TextStyle textBlack700 = const TextStyle(
+  fontFamily: 'Inter',
+  color: textBlack,
+  fontWeight: FontWeight.w700,
+  fontSize: 21,
+);
+
 TextStyle textBlack600 = const TextStyle(
   fontFamily: 'Inter',
   color: textBlack,
@@ -53,6 +60,13 @@ TextStyle textRed500 = const TextStyle(
 TextStyle textGray400 = const TextStyle(
   fontFamily: 'Inter',
   color: textGray,
+  fontWeight: FontWeight.w400,
+  fontSize: 15,
+);
+
+TextStyle textBlack400 = const TextStyle(
+  fontFamily: 'Inter',
+  color: textBlack,
   fontWeight: FontWeight.w400,
   fontSize: 15,
 );

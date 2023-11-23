@@ -1,7 +1,15 @@
 import 'package:get/get.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/navbar_page/navbar_page_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/navbar_page/navbar_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/otp_page/otp_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/payment_page/payment_page_view.dart';
+import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_binding.dart';
+import 'package:pas_mobile_xi_2/app/pages/profile_page/profile_page_view.dart';
 
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_binding.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_view.dart';
@@ -29,12 +37,17 @@ import 'package:pas_mobile_xi_2/common/routes/app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.cartpage;
+  static const initial = Routes.navbar;
 
   static final routes = [
     GetPage(
+      name: Routes.navbar,
+      page: () => const NavbarPageView(),
+      binding: NavbarPageBinding(),
+    ),
+    GetPage(
       name: Routes.splashscreenpage,
-      page: () => const SplashScreenPageView(),
+      page: () => SplashScreenPageView(),
       binding: SplashScreenPageBinding(),
     ),
     GetPage(
@@ -44,12 +57,17 @@ class AppPages {
     ),
     GetPage(
       name: Routes.signinpage,
-      page: () => const SignInPageView(),
+      page: () => SignInPageView(),
       binding: SignInPageBinding(),
     ),
     GetPage(
+      name: Routes.otppage,
+      page: () => OtpPageView(),
+      binding: OtpPageBinding(),
+    ),
+    GetPage(
       name: Routes.signuppage,
-      page: () => const SignUpPageView(),
+      page: () => SignUpPageView(),
       binding: SignUpPageBinding(),
     ),
     GetPage(
@@ -58,8 +76,13 @@ class AppPages {
       binding: HomePageBinding(),
     ),
     GetPage(
+      name: Routes.detailpage,
+      page: () => DetailPage(),
+      binding: DetailPageBinding(),
+    ),
+    GetPage(
       name: Routes.cartpage,
-      page: () => CartPageView(),
+      page: () => const CartPageView(),
       binding: CartPageBinding(),
     ),
     GetPage(
@@ -71,6 +94,11 @@ class AppPages {
       name: Routes.paymentpage,
       page: () => const PaymentPageView(),
       binding: PaymentPageBinding(),
+    ),
+    GetPage(
+      name: Routes.profilpage,
+      page: () => ProfilePageView(),
+      binding: ProfilePageBinding(),
     ),
   ];
 }

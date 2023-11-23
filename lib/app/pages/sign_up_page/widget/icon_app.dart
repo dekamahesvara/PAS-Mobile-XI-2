@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class iconApp extends StatelessWidget {
-  const iconApp({
+class IconApp extends StatelessWidget {
+  const IconApp({
     super.key,
     required this.width,
     required this.height,
@@ -15,8 +15,8 @@ class iconApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       'assets/svg/app_logo.svg',
-      width: width * 0.05,
-      height: height * 0.05,
+      width: width * 0.03,
+      height: height * 0.03,
     );
   }
 }

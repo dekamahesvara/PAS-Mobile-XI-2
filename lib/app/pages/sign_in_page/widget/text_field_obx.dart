@@ -12,7 +12,24 @@ class TextFieldObx extends GetView<SignInPageController> {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        child: Obx(() => TextField(
+        child: Obx(() => TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'You need to fill this field';
+                }
+
+                if (value.length < 8) {
+                  return 'Password must be at least 8 characters';
+                }
+
+                if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$')
+                    .hasMatch(value)) {
+                  return 'Password requires lowercase, uppercase, and a number';
+                }
+
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: controller.passwordController,
               obscureText: controller.isObsecure.value,
               decoration: InputDecoration(
@@ -38,6 +55,12 @@ class TextFieldObx extends GetView<SignInPageController> {
                 ),
                 focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: black),
+                ),
+                errorBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: red),
+                ),
+                focusedErrorBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: red),
                 ),
               ),
             )));
