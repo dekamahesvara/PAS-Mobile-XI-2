@@ -4,7 +4,6 @@ import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/modal.dart';
 import 'package:pas_mobile_xi_2/app/pages/wishlist_page/wishlist_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/detail_page_controller.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/description.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/image_slideshow.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/main_image.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/product_price.dart';
 import 'package:pas_mobile_xi_2/app/pages/detail_page/widget/product_title.dart';
@@ -38,7 +37,6 @@ class DetailPage extends GetView<DetailPageController> {
                     MainImage(controller: controller),
                     ProductTitle(controller: controller),
                     ProductPrice(controller: controller),
-                    ImageSlideShow(controller: controller),
                     Description(controller: controller),
                     RatingAndStocks(controller: controller),
                     const SizedBox(

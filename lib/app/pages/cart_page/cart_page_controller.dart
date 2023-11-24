@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pas_mobile_xi_2/app/models/cart_item_model.dart';
-import 'package:pas_mobile_xi_2/app/pages/detail_page/modal_controller.dart';
 
 class CartPageController extends GetxController {
-  final ModalController modalController = Get.put(ModalController());
-
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   RxInt totalCartPrice = 0.obs;
   RxString selectedPaymentMethodName = "GoPay".obs;
