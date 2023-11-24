@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageController extends GetxController {
   late final SharedPreferences prefs;
-  late String username = '';
+  RxString username = ''.obs;
   RxBool successLoadAll = false.obs;
   RxBool successLoadSearch = false.obs;
 
@@ -14,12 +14,6 @@ class HomePageController extends GetxController {
   void onInit() {
     super.onInit();
     loadDataAll();
-    loadData();
-  }
-
-  loadData() async {
-    prefs = await SharedPreferences.getInstance();
-    username = prefs.getString('username') ?? 'deka';
   }
 
   Rx<ResponseModel> responseModel = ResponseModel(
@@ -38,11 +32,13 @@ class HomePageController extends GetxController {
           await http.get(Uri.parse('https://dummyjson.com/products?limit=100'));
       final responseCategory = await http
           .get(Uri.parse('https://dummyjson.com/products/categories'));
+      final prefs = await SharedPreferences.getInstance();
 
       if (response.statusCode == 200) {
         responseModel.value = responseModelFromJson(response.body);
         responseCategoryModel.value = json.decode(responseCategory.body);
         successLoadAll.value = true;
+        username.value = prefs.getString('username') ?? 'deka';
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }

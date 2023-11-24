@@ -23,44 +23,46 @@ class SignUpPageView extends GetView<SignUpPageController> {
     final double height = mediaQuery.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    primary,
-                    secondary,
-                  ],
-                ),
-              ),
-              child: Center(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconApp(width: width, height: height),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      whiteContainer(),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      signUpButton(context, formKey),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      primary,
+                      secondary,
                     ],
+                  ),
+                ),
+                child: Center(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconApp(width: width, height: height),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        whiteContainer(),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        signUpButton(context, formKey),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const ButtonBack(),
-        ],
+            const ButtonBack(),
+          ],
+        ),
       ),
     );
   }

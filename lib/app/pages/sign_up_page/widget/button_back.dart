@@ -9,23 +9,20 @@ class ButtonBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 50,
-      left: 10,
-      child: GestureDetector(
-        onTap: () => Get.back(),
-        child: Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: white,
-          ),
-          child: const Center(
-            child: Icon(
-              Icons.arrow_back,
-              color: black,
-            ),
+    return GestureDetector(
+      onTap: () => Get.back(),
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        width: 40,
+        height: 40,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: white,
+        ),
+        child: const Center(
+          child: Icon(
+            Icons.arrow_back,
+            color: black,
           ),
         ),
       ),
